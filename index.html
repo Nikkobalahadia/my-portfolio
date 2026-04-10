@@ -1,0 +1,496 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="dark">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Nikko Balahadia — Developer Portfolio</title>
+  <link rel="stylesheet" href="style.css" />
+  <!-- Google Fonts: Syne (display) + DM Sans (body) -->
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Syne:wght@400;600;700;800&family=DM+Sans:ital,opsz,wght@0,9..40,300;0,9..40,400;0,9..40,500;1,9..40,300&display=swap" rel="stylesheet" />
+  <!-- Devicons for tech logos -->
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/devicons/1.8.0/css/devicons.min.css" />
+</head>
+<body>
+
+  <!-- ========== CURSOR ========== -->
+
+
+  <!-- ========== NAVBAR ========== -->
+  <nav class="navbar" id="navbar">
+    <div class="nav-inner">
+      <a href="#home" class="nav-logo">NB<span class="logo-dot">.</span></a>
+      <ul class="nav-links" id="navLinks">
+        <li><a href="#home" class="nav-link active">Home</a></li>
+        <li><a href="#about" class="nav-link">About</a></li>
+        <li><a href="#projects" class="nav-link">Projects</a></li>
+        <li><a href="#stack" class="nav-link">Stack</a></li>
+        <li><a href="#skills" class="nav-link">Skills</a></li>
+        <li><a href="#contact" class="nav-link">Contact</a></li>
+      </ul>
+      <div class="nav-actions">
+        <button class="theme-toggle" id="themeToggle" aria-label="Toggle dark mode">
+          <span class="theme-icon">☀</span>
+        </button>
+        <button class="hamburger" id="hamburger" aria-label="Menu">
+          <span></span><span></span><span></span>
+        </button>
+      </div>
+    </div>
+  </nav>
+
+  <!-- ========== HERO ========== -->
+  <section class="hero" id="home">
+    <div class="hero-content">
+      <div class="hero-badge reveal">
+        <span class="badge-dot"></span>
+        Available for projects
+      </div>
+      <h1 class="hero-title reveal">
+        <span class="line">Nikko</span>
+        <span class="line accent-line">Balahadia</span>
+      </h1>
+      <p class="hero-tagline reveal">
+        <span class="typing-text" id="typingText"></span><span class="cursor-blink">|</span>
+      </p>
+      <p class="hero-desc reveal">
+        Student developer passionate about building functional systems,<br>
+        clean interfaces, and solving real-world problems through code.
+      </p>
+      <div class="hero-actions reveal">
+        <a href="#projects" class="btn btn-primary">
+          <span>View My Work</span>
+          <svg width="16" height="16" viewBox="0 0 16 16" fill="none"><path d="M3 8h10M9 4l4 4-4 4" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg>
+        </a>
+        <a href="#contact" class="btn btn-ghost">Get in Touch</a>
+      </div>
+      <div class="hero-stats reveal">
+        <div class="stat"><span class="stat-num">4+</span><span class="stat-label">Projects</span></div>
+        <div class="stat-divider"></div>
+        <div class="stat"><span class="stat-num">6+</span><span class="stat-label">Technologies</span></div>
+        <div class="stat-divider"></div>
+        <div class="stat"><span class="stat-num">∞</span><span class="stat-label">Curiosity</span></div>
+      </div>
+    </div>
+    <div class="scroll-indicator">
+      <span>Scroll</span>
+      <div class="scroll-line"><div class="scroll-dot"></div></div>
+    </div>
+  </section>
+
+  <!-- ========== ABOUT ========== -->
+  <section class="about" id="about">
+    <div class="container">
+      <div class="section-tag reveal">Who I Am</div>
+      <div class="about-grid">
+        <div class="about-photo reveal">
+          <div class="photo-frame">
+            <div class="photo-placeholder">
+              <span class="photo-initials">NB</span>
+              <div class="photo-rings">
+                <div class="ring ring-1"></div>
+                <div class="ring ring-2"></div>
+              </div>
+            </div>
+            <div class="photo-accent"></div>
+          </div>
+        </div>
+        <div class="about-text reveal">
+          <h2 class="section-title">Building Systems,<br><span class="accent">One Line at a Time</span></h2>
+          <p class="about-desc">
+            Hi! I'm Nikko, a student developer with a deep interest in software systems and web development. 
+            I love turning ideas into working applications — whether it's a full management system, 
+            a grade tracking app, or a productivity website.
+          </p>
+          <p class="about-desc">
+            Currently honing my skills across the full stack, from crafting responsive UIs with HTML/CSS/JS 
+            to building robust backends with PHP & MySQL, and creating desktop apps using Windows Forms in C#.
+          </p>
+          <div class="about-tags">
+            <span class="tag">🎓 CS Student</span>
+            <span class="tag">💻 System Builder</span>
+            <span class="tag">🌐 Web Dev</span>
+            <span class="tag">🛠 Problem Solver</span>
+          </div>
+          <a href="#" class="btn btn-outline" download>
+            <svg width="16" height="16" viewBox="0 0 16 16" fill="none"><path d="M8 2v8M5 7l3 3 3-3M2 12h12" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg>
+            Download Resume
+          </a>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ========== PROJECTS ========== -->
+  <section class="projects" id="projects">
+    <div class="container">
+      <div class="section-tag reveal">My Work</div>
+      <h2 class="section-title center reveal">Featured <span class="accent">Projects</span></h2>
+      <p class="section-sub reveal">A selection of systems and apps I've built from scratch</p>
+
+      <!-- Filter Buttons -->
+      <div class="filter-btns reveal">
+        <button class="filter-btn active" data-filter="all">All</button>
+        <button class="filter-btn" data-filter="web">Web</button>
+        <button class="filter-btn" data-filter="desktop">Desktop</button>
+        <button class="filter-btn" data-filter="system">System</button>
+      </div>
+
+      <div class="projects-grid">
+
+        <!-- Project 1 -->
+        <div class="project-card reveal" data-category="system web">
+          <div class="project-number">01</div>
+          <div class="project-top">
+            <div class="project-icon">🏋️</div>
+            <div class="project-links">
+              <a href="#" class="proj-link" title="View Source">
+                <svg width="18" height="18" viewBox="0 0 24 24" fill="none"><path d="M9 19c-5 1.5-5-2.5-7-3m14 6v-3.87a3.37 3.37 0 0 0-.94-2.61c3.14-.35 6.44-1.54 6.44-7A5.44 5.44 0 0 0 20 4.77 5.07 5.07 0 0 0 19.91 1S18.73.65 16 2.48a13.38 13.38 0 0 0-7 0C6.27.65 5.09 1 5.09 1A5.07 5.07 0 0 0 5 4.77a5.44 5.44 0 0 0-1.5 3.78c0 5.42 3.3 6.61 6.44 7A3.37 3.37 0 0 0 9 18.13V22" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg>
+              </a>
+              <a href="#" class="proj-link" title="Live Demo">
+                <svg width="18" height="18" viewBox="0 0 24 24" fill="none"><path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6M15 3h6v6M10 14L21 3" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg>
+              </a>
+            </div>
+          </div>
+          <h3 class="project-title">Gym Management System</h3>
+          <p class="project-desc">A full-featured gym management platform with member registration, attendance tracking, subscription management, and payment recording for gym owners and staff.</p>
+          <div class="project-tech">
+            <span class="tech-tag">PHP</span>
+            <span class="tech-tag">MySQL</span>
+            <span class="tech-tag">HTML/CSS</span>
+            <span class="tech-tag">JavaScript</span>
+          </div>
+        </div>
+
+        <!-- Project 2 -->
+        <div class="project-card reveal" data-category="desktop">
+          <div class="project-number">02</div>
+          <div class="project-top">
+            <div class="project-icon">📊</div>
+            <div class="project-links">
+              <a href="#" class="proj-link" title="View Source">
+                <svg width="18" height="18" viewBox="0 0 24 24" fill="none"><path d="M9 19c-5 1.5-5-2.5-7-3m14 6v-3.87a3.37 3.37 0 0 0-.94-2.61c3.14-.35 6.44-1.54 6.44-7A5.44 5.44 0 0 0 20 4.77 5.07 5.07 0 0 0 19.91 1S18.73.65 16 2.48a13.38 13.38 0 0 0-7 0C6.27.65 5.09 1 5.09 1A5.07 5.07 0 0 0 5 4.77a5.44 5.44 0 0 0-1.5 3.78c0 5.42 3.3 6.61 6.44 7A3.37 3.37 0 0 0 9 18.13V22" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg>
+              </a>
+            </div>
+          </div>
+          <h3 class="project-title">GradeWise</h3>
+          <p class="project-desc">A Windows Forms desktop application for students and teachers to calculate, track, and visualize grades. Features GPA computation, grade reports, and subject management.</p>
+          <div class="project-tech">
+            <span class="tech-tag">C#</span>
+            <span class="tech-tag">Windows Forms</span>
+            <span class="tech-tag">.NET</span>
+          </div>
+        </div>
+
+        <!-- Project 3 -->
+        <div class="project-card reveal" data-category="web">
+          <div class="project-number">03</div>
+          <div class="project-top">
+            <div class="project-icon">📚</div>
+            <div class="project-links">
+              <a href="#" class="proj-link" title="View Source">
+                <svg width="18" height="18" viewBox="0 0 24 24" fill="none"><path d="M9 19c-5 1.5-5-2.5-7-3m14 6v-3.87a3.37 3.37 0 0 0-.94-2.61c3.14-.35 6.44-1.54 6.44-7A5.44 5.44 0 0 0 20 4.77 5.07 5.07 0 0 0 19.91 1S18.73.65 16 2.48a13.38 13.38 0 0 0-7 0C6.27.65 5.09 1 5.09 1A5.07 5.07 0 0 0 5 4.77a5.44 5.44 0 0 0-1.5 3.78c0 5.42 3.3 6.61 6.44 7A3.37 3.37 0 0 0 9 18.13V22" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg>
+              </a>
+              <a href="#" class="proj-link" title="Live Demo">
+                <svg width="18" height="18" viewBox="0 0 24 24" fill="none"><path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6M15 3h6v6M10 14L21 3" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg>
+              </a>
+            </div>
+          </div>
+          <h3 class="project-title">Study Buddy</h3>
+          <p class="project-desc">A collaborative study platform website where students can create study groups, share notes, set study timers, and track learning progress together.</p>
+          <div class="project-tech">
+            <span class="tech-tag">HTML</span>
+            <span class="tech-tag">CSS</span>
+            <span class="tech-tag">JavaScript</span>
+            <span class="tech-tag">PHP</span>
+          </div>
+        </div>
+
+        <!-- Project 4 -->
+        <div class="project-card reveal" data-category="system">
+          <div class="project-number">04</div>
+          <div class="project-top">
+            <div class="project-icon">🛒</div>
+            <div class="project-links">
+              <a href="#" class="proj-link" title="View Source">
+                <svg width="18" height="18" viewBox="0 0 24 24" fill="none"><path d="M9 19c-5 1.5-5-2.5-7-3m14 6v-3.87a3.37 3.37 0 0 0-.94-2.61c3.14-.35 6.44-1.54 6.44-7A5.44 5.44 0 0 0 20 4.77 5.07 5.07 0 0 0 19.91 1S18.73.65 16 2.48a13.38 13.38 0 0 0-7 0C6.27.65 5.09 1 5.09 1A5.07 5.07 0 0 0 5 4.77a5.44 5.44 0 0 0-1.5 3.78c0 5.42 3.3 6.61 6.44 7A3.37 3.37 0 0 0 9 18.13V22" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg>
+              </a>
+            </div>
+          </div>
+          <h3 class="project-title">POS System — SAMABACO</h3>
+          <p class="project-desc">A complete Point-of-Sale system for a business establishment with inventory management, transaction processing, sales reporting, and receipt generation.</p>
+          <div class="project-tech">
+            <span class="tech-tag">PHP</span>
+            <span class="tech-tag">MySQL</span>
+            <span class="tech-tag">JavaScript</span>
+            <span class="tech-tag">CSS</span>
+          </div>
+        </div>
+
+      </div>
+    </div>
+  </section>
+
+  <!-- ========== TECH STACK CAROUSEL ========== -->
+  <section class="stack" id="stack">
+    <div class="container">
+      <div class="section-tag reveal">Technologies</div>
+      <h2 class="section-title center reveal">My Tech <span class="accent">Stack</span></h2>
+      <p class="section-sub reveal">Tools and technologies I work with</p>
+    </div>
+
+    <div class="carousel-wrapper reveal">
+      <button class="carousel-btn carousel-prev" id="carouselPrev" aria-label="Previous">
+        <svg width="20" height="20" viewBox="0 0 20 20" fill="none"><path d="M12 15l-5-5 5-5" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg>
+      </button>
+
+      <div class="carousel-viewport" id="carouselViewport">
+        <div class="carousel-track" id="carouselTrack">
+
+          <div class="carousel-slide">
+            <div class="tech-card">
+              <div class="tech-icon-wrap html">
+                <svg viewBox="0 0 32 32" width="48" height="48"><path fill="#E44D26" d="M5.902 27.201L3.655 2h24.69l-2.25 25.197L15.985 30z"/><path fill="#F16529" d="M16 27.858l8.17-2.265 1.922-21.532H16z"/><path fill="#EBEBEB" d="M16 13.407h-4.09l-.282-3.165H16V7.151H8.25l.074.83.759 8.517H16zm0 8.735l-.014.004-3.442-.929-.22-2.465H9.221l.433 4.852 6.332 1.758.014-.004z"/><path fill="#fff" d="M15.989 13.407v3.091h3.806l-.358 4.009-3.448.93v3.216l6.337-1.757.046-.522.726-8.137.075-.83zm0-6.256v3.091h7.466l.062-.694.141-1.567.074-.83z"/></svg>
+              </div>
+              <span class="tech-name">HTML5</span>
+              <span class="tech-sub">Markup</span>
+            </div>
+          </div>
+
+          <div class="carousel-slide">
+            <div class="tech-card">
+              <div class="tech-icon-wrap css">
+                <svg viewBox="0 0 32 32" width="48" height="48"><path fill="#1572B6" d="M5.902 27.201L3.655 2h24.69l-2.25 25.197L15.985 30z"/><path fill="#33A9DC" d="M16 27.858l8.17-2.265 1.922-21.532H16z"/><path fill="#fff" d="M16 13.407h4.09l-.282 3.09-3.808 1.027v3.228l3.995-1.107h.047l.367-4.115.074-.83.683-7.659H8.25l.074.83.277 3.091H16zm0 7.576v-3.228l-.014.004-3.442-.929-.22-2.465H9.221l.433 4.852 6.332 1.758.014-.004z"/></svg>
+              </div>
+              <span class="tech-name">CSS3</span>
+              <span class="tech-sub">Styling</span>
+            </div>
+          </div>
+
+          <div class="carousel-slide">
+            <div class="tech-card">
+              <div class="tech-icon-wrap js">
+                <svg viewBox="0 0 32 32" width="48" height="48"><path fill="#F7DF1E" d="M0 0h32v32H0z"/><path d="M9.802 24.6c.63 1.022 1.458 1.77 2.916 1.77 1.224 0 2.006-.612 2.006-1.458 0-1.01-.803-1.368-2.15-1.954l-.738-.317c-2.132-.908-3.55-2.042-3.55-4.444 0-2.212 1.684-3.898 4.314-3.898 1.872 0 3.216.65 4.184 2.353l-2.29 1.469c-.504-.9-1.048-1.254-1.894-1.254-.862 0-1.408.546-1.408 1.254 0 .879.546 1.236 1.81 1.786l.738.316c2.513 1.08 3.93 2.173 3.93 4.638 0 2.66-2.088 4.11-4.893 4.11-2.742 0-4.514-1.306-5.376-3.018L9.802 24.6zm10.737.273c.463.818.882 1.51 1.872 1.51.956 0 1.558-.375 1.558-1.83v-9.9h2.827v9.943c0 3.016-1.768 4.39-4.348 4.39-2.33 0-3.683-1.207-4.368-2.661l2.459-1.452z"/></svg>
+              </div>
+              <span class="tech-name">JavaScript</span>
+              <span class="tech-sub">Scripting</span>
+            </div>
+          </div>
+
+          <div class="carousel-slide">
+            <div class="tech-card">
+              <div class="tech-icon-wrap php">
+                <svg viewBox="0 0 32 32" width="48" height="48"><ellipse cx="16" cy="16" rx="16" ry="9.5" fill="#8892BF"/><path d="M6.5 20.5l1.5-8H12a3 3 0 0 1 0 6H9.5L9 20.5H6.5zm3.3-4.5h2.2a1 1 0 0 0 0-2H9.8l-.3 1.5.3.5zM18 12.5l-.5 2.5h3l-.5 3H17l-.5 2.5H14l1.5-8H20l-.5 2H18zm3.5 0h2.5a3 3 0 0 1 0 6H22l-.5 2H19l1.5-8zm2.8 4a1 1 0 0 0 0-2h-1.5l-.3 2h1.8z" fill="#fff"/></svg>
+              </div>
+              <span class="tech-name">PHP</span>
+              <span class="tech-sub">Backend</span>
+            </div>
+          </div>
+
+          <div class="carousel-slide">
+            <div class="tech-card">
+              <div class="tech-icon-wrap mysql">
+                <svg viewBox="0 0 32 32" width="48" height="48"><path fill="#00758F" d="M16 3C8.82 3 3 8.82 3 16s5.82 13 13 13 13-5.82 13-13S23.18 3 16 3z"/><path fill="#F29111" d="M22.8 14.2c-.5-.4-1.3-.6-2.4-.6h-3.3l-1 5.6h1.4l.4-2.1h1.6c.8 0 1.4-.1 1.9-.4.5-.3.9-.6 1.2-1.1.3-.5.4-1 .4-1.5-.1-.5-.2-.8-.2-.9zm-1.4 2.1c-.3.3-.7.4-1.3.4h-1.4l.4-2.1h1.4c.5 0 .9.1 1.1.3.2.2.3.5.3.8-.1.3-.2.5-.5.6zM8.2 13.6L7 19.8h1.4l.5-2.6h2.3l.5 2.6h1.4l-1.2-6.2H8.2zm1.6 2.7l.4-1.8h1.5l.3 1.8H9.8zM17.3 19.8l1.2-6.2h-1.4l-1.2 6.2z"/></svg>
+              </div>
+              <span class="tech-name">MySQL</span>
+              <span class="tech-sub">Database</span>
+            </div>
+          </div>
+
+          <div class="carousel-slide">
+            <div class="tech-card">
+              <div class="tech-icon-wrap csharp">
+                <svg viewBox="0 0 32 32" width="48" height="48"><path fill="#9B4F96" d="M16 3l11.66 6.75v13.5L16 29 4.34 22.25V8.75z"/><path fill="#fff" d="M16 7.5A8.5 8.5 0 0 0 7.5 16 8.5 8.5 0 0 0 16 24.5 8.5 8.5 0 0 0 23.38 20h-2.6A6 6 0 0 1 16 22a6 6 0 0 1-6-6 6 6 0 0 1 6-6 6 6 0 0 1 4.78 2.38h2.6A8.5 8.5 0 0 0 16 7.5zm5 7v2h-1v1h1v2h1v-2h1v-2h-1v-1h1v-2h-1v2h-2zm3 0v2h-1v1h1v2h1v-2h1v-2h-1v-1h1v-2h-1v2h-2z"/></svg>
+              </div>
+              <span class="tech-name">C#</span>
+              <span class="tech-sub">Windows Forms</span>
+            </div>
+          </div>
+
+          <div class="carousel-slide">
+            <div class="tech-card">
+              <div class="tech-icon-wrap git">
+                <svg viewBox="0 0 32 32" width="48" height="48"><path fill="#F05032" d="M29.47 14.47L17.53 2.53a1.8 1.8 0 0 0-2.55 0l-2.54 2.54 3.22 3.22a2.14 2.14 0 0 1 2.71 2.73l3.1 3.1a2.14 2.14 0 1 1-1.28 1.28l-2.9-2.9v7.63a2.14 2.14 0 1 1-1.76-.07V12.3a2.14 2.14 0 0 1-1.16-2.81L11.1 6.28 2.53 14.85a1.8 1.8 0 0 0 0 2.55l11.94 11.94a1.8 1.8 0 0 0 2.55 0l12.45-12.45a1.8 1.8 0 0 0 0-2.42z"/></svg>
+              </div>
+              <span class="tech-name">Git</span>
+              <span class="tech-sub">Version Control</span>
+            </div>
+          </div>
+
+          <div class="carousel-slide">
+            <div class="tech-card">
+              <div class="tech-icon-wrap vscode">
+                <svg viewBox="0 0 32 32" width="48" height="48"><path fill="#0065A9" d="M23.8 2.7L13.5 12.6 6.8 7 4 8.5l7 8.5-7 8.5 2.8 1.5 6.7-5.6 10.3 9.9 4.2-1.8V4.5L23.8 2.7zM24 24.1l-8.2-7.6 8.2-7.7v15.3z"/></svg>
+              </div>
+              <span class="tech-name">VS Code</span>
+              <span class="tech-sub">Editor</span>
+            </div>
+          </div>
+
+        </div>
+      </div>
+
+      <button class="carousel-btn carousel-next" id="carouselNext" aria-label="Next">
+        <svg width="20" height="20" viewBox="0 0 20 20" fill="none"><path d="M8 5l5 5-5 5" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg>
+      </button>
+
+      <div class="carousel-dots" id="carouselDots"></div>
+    </div>
+  </section>
+
+  <!-- ========== SKILLS ========== -->
+  <section class="skills" id="skills">
+    <div class="container">
+      <div class="section-tag reveal">Proficiency</div>
+      <h2 class="section-title center reveal">Skills <span class="accent">Overview</span></h2>
+
+      <div class="skills-grid">
+
+        <div class="skill-category reveal">
+          <div class="cat-header">
+            <span class="cat-icon">🎨</span>
+            <h3>Frontend</h3>
+          </div>
+          <div class="skill-bars">
+            <div class="skill-item">
+              <div class="skill-info"><span>HTML5</span><span class="skill-pct">90%</span></div>
+              <div class="skill-bar"><div class="skill-fill" data-width="90"></div></div>
+            </div>
+            <div class="skill-item">
+              <div class="skill-info"><span>CSS3</span><span class="skill-pct">85%</span></div>
+              <div class="skill-bar"><div class="skill-fill" data-width="85"></div></div>
+            </div>
+            <div class="skill-item">
+              <div class="skill-info"><span>JavaScript</span><span class="skill-pct">75%</span></div>
+              <div class="skill-bar"><div class="skill-fill" data-width="75"></div></div>
+            </div>
+          </div>
+        </div>
+
+        <div class="skill-category reveal">
+          <div class="cat-header">
+            <span class="cat-icon">⚙️</span>
+            <h3>Backend</h3>
+          </div>
+          <div class="skill-bars">
+            <div class="skill-item">
+              <div class="skill-info"><span>PHP</span><span class="skill-pct">80%</span></div>
+              <div class="skill-bar"><div class="skill-fill" data-width="80"></div></div>
+            </div>
+            <div class="skill-item">
+              <div class="skill-info"><span>MySQL</span><span class="skill-pct">78%</span></div>
+              <div class="skill-bar"><div class="skill-fill" data-width="78"></div></div>
+            </div>
+            <div class="skill-item">
+              <div class="skill-info"><span>C# / .NET</span><span class="skill-pct">70%</span></div>
+              <div class="skill-bar"><div class="skill-fill" data-width="70"></div></div>
+            </div>
+          </div>
+        </div>
+
+        <div class="skill-category reveal">
+          <div class="cat-header">
+            <span class="cat-icon">🛠</span>
+            <h3>Tools & Others</h3>
+          </div>
+          <div class="skill-bars">
+            <div class="skill-item">
+              <div class="skill-info"><span>Git & GitHub</span><span class="skill-pct">72%</span></div>
+              <div class="skill-bar"><div class="skill-fill" data-width="72"></div></div>
+            </div>
+            <div class="skill-item">
+              <div class="skill-info"><span>VS Code</span><span class="skill-pct">88%</span></div>
+              <div class="skill-bar"><div class="skill-fill" data-width="88"></div></div>
+            </div>
+            <div class="skill-item">
+              <div class="skill-info"><span>Windows Forms</span><span class="skill-pct">70%</span></div>
+              <div class="skill-bar"><div class="skill-fill" data-width="70"></div></div>
+            </div>
+          </div>
+        </div>
+
+      </div>
+    </div>
+  </section>
+
+  <!-- ========== CONTACT ========== -->
+  <section class="contact" id="contact">
+    <div class="container">
+      <div class="section-tag reveal">Let's Talk</div>
+      <h2 class="section-title center reveal">Get In <span class="accent">Touch</span></h2>
+      <p class="section-sub reveal">Have a project in mind or just want to say hi? I'd love to hear from you.</p>
+
+      <div class="contact-grid">
+
+        <div class="contact-info reveal">
+          <div class="contact-item">
+            <div class="contact-icon">📧</div>
+            <div>
+              <div class="contact-label">Email</div>
+              <a href="mailto:nikko@email.com" class="contact-value">nikko@email.com</a>
+            </div>
+          </div>
+          <div class="contact-item">
+            <div class="contact-icon">📍</div>
+            <div>
+              <div class="contact-label">Location</div>
+              <span class="contact-value">Philippines</span>
+            </div>
+          </div>
+          <div class="contact-socials">
+            <a href="#" class="social-btn" aria-label="GitHub">
+              <svg width="20" height="20" viewBox="0 0 24 24" fill="none"><path d="M9 19c-5 1.5-5-2.5-7-3m14 6v-3.87a3.37 3.37 0 0 0-.94-2.61c3.14-.35 6.44-1.54 6.44-7A5.44 5.44 0 0 0 20 4.77 5.07 5.07 0 0 0 19.91 1S18.73.65 16 2.48a13.38 13.38 0 0 0-7 0C6.27.65 5.09 1 5.09 1A5.07 5.07 0 0 0 5 4.77a5.44 5.44 0 0 0-1.5 3.78c0 5.42 3.3 6.61 6.44 7A3.37 3.37 0 0 0 9 18.13V22" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg>
+              GitHub
+            </a>
+            <a href="#" class="social-btn" aria-label="Facebook">
+              <svg width="20" height="20" viewBox="0 0 24 24" fill="none"><path d="M18 2h-3a5 5 0 0 0-5 5v3H7v4h3v8h4v-8h3l1-4h-4V7a1 1 0 0 1 1-1h3z" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg>
+              Facebook
+            </a>
+            <a href="#" class="social-btn" aria-label="LinkedIn">
+              <svg width="20" height="20" viewBox="0 0 24 24" fill="none"><path d="M16 8a6 6 0 0 1 6 6v7h-4v-7a2 2 0 0 0-2-2 2 2 0 0 0-2 2v7h-4v-7a6 6 0 0 1 6-6zM2 9h4v12H2z" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/><circle cx="4" cy="4" r="2" stroke="currentColor" stroke-width="1.5"/></svg>
+              LinkedIn
+            </a>
+          </div>
+        </div>
+
+        <form class="contact-form reveal" id="contactForm" novalidate>
+          <div class="form-group">
+            <label for="name">Name</label>
+            <input type="text" id="name" name="name" placeholder="Your name" required />
+          </div>
+          <div class="form-group">
+            <label for="email">Email</label>
+            <input type="email" id="email" name="email" placeholder="your@email.com" required />
+          </div>
+          <div class="form-group">
+            <label for="message">Message</label>
+            <textarea id="message" name="message" rows="5" placeholder="Tell me about your project..." required></textarea>
+          </div>
+          <button type="submit" class="btn btn-primary full">
+            <span>Send Message</span>
+            <svg width="16" height="16" viewBox="0 0 16 16" fill="none"><path d="M2 8h12M10 4l4 4-4 4" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg>
+          </button>
+          <div class="form-success" id="formSuccess">
+            ✅ Message sent! I'll get back to you soon.
+          </div>
+        </form>
+
+      </div>
+    </div>
+  </section>
+
+  <!-- ========== FOOTER ========== -->
+  <footer class="footer">
+    <div class="footer-inner">
+      <div class="footer-logo">NB<span class="logo-dot">.</span></div>
+      <p class="footer-copy">© 2025 Nikko Balahadia. Built with 💙 and lots of coffee.</p>
+      <a href="#home" class="back-to-top" id="backToTop" aria-label="Back to top">
+        <svg width="18" height="18" viewBox="0 0 18 18" fill="none"><path d="M9 14V4M5 8l4-4 4 4" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg>
+      </a>
+    </div>
+  </footer>
+
+  <script src="script.js"></script>
+</body>
+</html>

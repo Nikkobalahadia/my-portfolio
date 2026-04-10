@@ -1,0 +1,393 @@
+/* ============================================================
+   NIKKO BALAHADIA — PORTFOLIO SCRIPT
+   Features: Custom Cursor, Navbar, Typing Animation,
+             Scroll Reveal, Carousel, Skill Bars,
+             Project Filter, Dark Mode, Contact Form
+   ============================================================ */
+
+'use strict';
+
+/* ---- UTILS ---- */
+const $ = (sel, ctx = document) => ctx.querySelector(sel);
+const $$ = (sel, ctx = document) => [...ctx.querySelectorAll(sel)];
+
+/* ============================================================
+   1. CUSTOM CURSOR
+   ============================================================ */
+
+
+/* ============================================================
+   2. NAVBAR — Scroll Effect & Active Links
+   ============================================================ */
+(function initNavbar() {
+  const navbar   = $('#navbar');
+  const links    = $$('.nav-link');
+  const hamburger = $('#hamburger');
+  const navLinks  = $('#navLinks');
+
+  // Scrolled state
+  window.addEventListener('scroll', () => {
+    navbar.classList.toggle('scrolled', window.scrollY > 20);
+    updateActiveLink();
+  }, { passive: true });
+
+  // Hamburger toggle
+  hamburger?.addEventListener('click', () => {
+    hamburger.classList.toggle('open');
+    navLinks.classList.toggle('open');
+  });
+
+  // Close mobile menu on link click
+  links.forEach(link => {
+    link.addEventListener('click', () => {
+      hamburger?.classList.remove('open');
+      navLinks?.classList.remove('open');
+    });
+  });
+
+  // Active link on scroll
+  function updateActiveLink() {
+    const sections = $$('section[id]');
+    const scrollY  = window.scrollY + 100;
+
+    sections.forEach(section => {
+      const top    = section.offsetTop;
+      const height = section.offsetHeight;
+      const id     = section.getAttribute('id');
+      const link   = $(`.nav-link[href="#${id}"]`);
+
+      if (link) {
+        link.classList.toggle('active', scrollY >= top && scrollY < top + height);
+      }
+    });
+  }
+
+  updateActiveLink();
+})();
+
+/* ============================================================
+   3. TYPING ANIMATION
+   ============================================================ */
+(function initTyping() {
+  const el = $('#typingText');
+  if (!el) return;
+
+  const phrases = [
+    'Aspiring Developer & System Builder',
+    'PHP & MySQL Backend Engineer',
+    'Windows Forms App Developer',
+    'Web UI Enthusiast',
+    'Problem Solver with Code',
+  ];
+
+  let phraseIndex = 0;
+  let charIndex   = 0;
+  let deleting    = false;
+  let paused      = false;
+
+  function type() {
+    if (paused) return;
+
+    const current = phrases[phraseIndex];
+
+    if (!deleting) {
+      el.textContent = current.slice(0, ++charIndex);
+      if (charIndex === current.length) {
+        paused = true;
+        setTimeout(() => { deleting = true; paused = false; type(); }, 2200);
+        return;
+      }
+      setTimeout(type, 60);
+    } else {
+      el.textContent = current.slice(0, --charIndex);
+      if (charIndex === 0) {
+        deleting = false;
+        phraseIndex = (phraseIndex + 1) % phrases.length;
+      }
+      setTimeout(type, 35);
+    }
+  }
+
+  type();
+})();
+
+/* ============================================================
+   4. SCROLL REVEAL
+   ============================================================ */
+(function initScrollReveal() {
+  const reveals = $$('.reveal');
+
+  const observer = new IntersectionObserver((entries) => {
+    entries.forEach((entry, i) => {
+      if (entry.isIntersecting) {
+        // Stagger children in the same parent
+        const siblings = $$('.reveal', entry.target.parentElement);
+        const idx = siblings.indexOf(entry.target);
+        entry.target.style.transitionDelay = (idx * 0.07) + 's';
+        entry.target.classList.add('visible');
+        observer.unobserve(entry.target);
+      }
+    });
+  }, { threshold: 0.12 });
+
+  reveals.forEach(el => observer.observe(el));
+})();
+
+/* ============================================================
+   5. TECH STACK CAROUSEL
+   ============================================================ */
+(function initCarousel() {
+  const track    = $('#carouselTrack');
+  const viewport = $('#carouselViewport');
+  const prevBtn  = $('#carouselPrev');
+  const nextBtn  = $('#carouselNext');
+  const dotsWrap = $('#carouselDots');
+  if (!track) return;
+
+  const slides      = $$('.carousel-slide', track);
+  const totalSlides = slides.length;
+  let current       = 0;
+  let autoTimer     = null;
+  let slidesVisible = getSlidesVisible();
+
+  // Build dots
+  function buildDots() {
+    dotsWrap.innerHTML = '';
+    const dotCount = Math.ceil(totalSlides / slidesVisible);
+    for (let i = 0; i < dotCount; i++) {
+      const dot = document.createElement('div');
+      dot.className = 'carousel-dot' + (i === 0 ? ' active' : '');
+      dot.addEventListener('click', () => goTo(i * slidesVisible));
+      dotsWrap.appendChild(dot);
+    }
+  }
+
+  function getSlidesVisible() {
+    const vw = viewport.clientWidth;
+    const sw = 180; // approximate slide width
+    return Math.max(1, Math.floor(vw / sw));
+  }
+
+  function getSlideWidth() {
+    if (!slides[0]) return 180;
+    return slides[0].getBoundingClientRect().width ||
+           slides[0].offsetWidth || 180;
+  }
+
+  function goTo(index) {
+    const maxIndex = totalSlides - slidesVisible;
+    current = Math.max(0, Math.min(index, maxIndex));
+    const offset = current * getSlideWidth();
+    track.style.transform = `translateX(-${offset}px)`;
+    updateDots();
+  }
+
+  function updateDots() {
+    const dots = $$('.carousel-dot', dotsWrap);
+    const activeDot = Math.floor(current / slidesVisible);
+    dots.forEach((d, i) => d.classList.toggle('active', i === activeDot));
+  }
+
+  function next() { goTo(current + 1 >= totalSlides - slidesVisible + 1 ? 0 : current + 1); }
+  function prev() { goTo(current - 1 < 0 ? totalSlides - slidesVisible : current - 1); }
+
+  prevBtn?.addEventListener('click', () => { prev(); resetAuto(); });
+  nextBtn?.addEventListener('click', () => { next(); resetAuto(); });
+
+  // Autoplay
+  function startAuto() {
+    autoTimer = setInterval(next, 2800);
+  }
+  function stopAuto() { clearInterval(autoTimer); }
+  function resetAuto() { stopAuto(); startAuto(); }
+
+  // Pause on hover
+  viewport?.addEventListener('mouseenter', stopAuto);
+  viewport?.addEventListener('mouseleave', startAuto);
+
+  // Touch / drag support
+  let touchStartX = 0;
+  viewport?.addEventListener('touchstart', e => {
+    touchStartX = e.touches[0].clientX;
+    stopAuto();
+  }, { passive: true });
+  viewport?.addEventListener('touchend', e => {
+    const diff = touchStartX - e.changedTouches[0].clientX;
+    if (Math.abs(diff) > 40) diff > 0 ? next() : prev();
+    startAuto();
+  });
+
+  // Recalculate on resize
+  window.addEventListener('resize', () => {
+    slidesVisible = getSlidesVisible();
+    buildDots();
+    goTo(current);
+  });
+
+  // Init
+  buildDots();
+  startAuto();
+})();
+
+/* ============================================================
+   6. SKILL BARS — Animate when in view
+   ============================================================ */
+(function initSkillBars() {
+  const fills = $$('.skill-fill');
+
+  const observer = new IntersectionObserver((entries) => {
+    entries.forEach(entry => {
+      if (entry.isIntersecting) {
+        const fill  = entry.target;
+        const width = fill.dataset.width || '0';
+        fill.style.width = width + '%';
+        observer.unobserve(fill);
+      }
+    });
+  }, { threshold: 0.4 });
+
+  fills.forEach(f => observer.observe(f));
+})();
+
+/* ============================================================
+   7. PROJECT FILTER
+   ============================================================ */
+(function initFilter() {
+  const buttons = $$('.filter-btn');
+  const cards   = $$('.project-card');
+
+  buttons.forEach(btn => {
+    btn.addEventListener('click', () => {
+      // Update active button
+      buttons.forEach(b => b.classList.remove('active'));
+      btn.classList.add('active');
+
+      const filter = btn.dataset.filter;
+
+      cards.forEach(card => {
+        const cats = card.dataset.category || '';
+        const show = filter === 'all' || cats.includes(filter);
+
+        if (show) {
+          card.classList.remove('hidden');
+          // Tiny stagger re-reveal
+          card.style.opacity = '0';
+          card.style.transform = 'translateY(16px)';
+          setTimeout(() => {
+            card.style.transition = 'opacity 0.3s ease, transform 0.3s ease';
+            card.style.opacity    = '1';
+            card.style.transform  = 'none';
+          }, 30);
+        } else {
+          card.classList.add('hidden');
+        }
+      });
+    });
+  });
+})();
+
+/* ============================================================
+   8. DARK / LIGHT THEME TOGGLE
+   ============================================================ */
+(function initTheme() {
+  const toggle  = $('#themeToggle');
+  const iconEl  = toggle?.querySelector('.theme-icon');
+  const html    = document.documentElement;
+
+  // Load saved preference
+  const saved = localStorage.getItem('theme') || 'dark';
+  setTheme(saved);
+
+  toggle?.addEventListener('click', () => {
+    const current = html.getAttribute('data-theme');
+    setTheme(current === 'dark' ? 'light' : 'dark');
+  });
+
+  function setTheme(theme) {
+    html.setAttribute('data-theme', theme);
+    localStorage.setItem('theme', theme);
+    if (iconEl) iconEl.textContent = theme === 'dark' ? '☀' : '🌙';
+  }
+})();
+
+/* ============================================================
+   9. CONTACT FORM
+   ============================================================ */
+(function initContactForm() {
+  const form    = $('#contactForm');
+  const success = $('#formSuccess');
+  if (!form) return;
+
+  form.addEventListener('submit', e => {
+    e.preventDefault();
+
+    const name  = $('#name')?.value.trim();
+    const email = $('#email')?.value.trim();
+    const msg   = $('#message')?.value.trim();
+
+    if (!name || !email || !msg) return;
+
+    // Simulate sending (replace with actual backend/EmailJS)
+    const submitBtn = form.querySelector('button[type="submit"]');
+    submitBtn.disabled = true;
+    submitBtn.querySelector('span').textContent = 'Sending...';
+
+    setTimeout(() => {
+      form.reset();
+      submitBtn.disabled = false;
+      submitBtn.querySelector('span').textContent = 'Send Message';
+      success?.classList.add('visible');
+      setTimeout(() => success?.classList.remove('visible'), 5000);
+    }, 1200);
+  });
+})();
+
+/* ============================================================
+   10. SMOOTH SCROLL FOR ALL ANCHOR LINKS
+   ============================================================ */
+(function initSmoothScroll() {
+  $$('a[href^="#"]').forEach(link => {
+    link.addEventListener('click', e => {
+      const target = $(link.getAttribute('href'));
+      if (!target) return;
+      e.preventDefault();
+      const offset = 68; // navbar height
+      const top = target.getBoundingClientRect().top + window.scrollY - offset;
+      window.scrollTo({ top, behavior: 'smooth' });
+    });
+  });
+})();
+
+/* ============================================================
+   11. HERO STATS COUNT-UP ANIMATION
+   ============================================================ */
+(function initCountUp() {
+  const stats = $$('.stat-num');
+  const observer = new IntersectionObserver(entries => {
+    entries.forEach(entry => {
+      if (!entry.isIntersecting) return;
+      const el   = entry.target;
+      const text = el.textContent.trim();
+      const num  = parseInt(text);
+      if (isNaN(num)) return;
+
+      let start = 0;
+      const end      = num;
+      const suffix   = text.replace(/[0-9]/g, '');
+      const duration = 1000;
+      const step     = 16;
+      const steps    = duration / step;
+      const inc      = end / steps;
+
+      const timer = setInterval(() => {
+        start = Math.min(start + inc, end);
+        el.textContent = Math.floor(start) + suffix;
+        if (start >= end) clearInterval(timer);
+      }, step);
+
+      observer.unobserve(el);
+    });
+  }, { threshold: 0.8 });
+
+  stats.forEach(s => observer.observe(s));
+})();
