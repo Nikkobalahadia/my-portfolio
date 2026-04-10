@@ -821,30 +821,6 @@ section { padding: var(--section-py) 0; position: relative; }
   font-weight: 700;
 }
 
-.skill-bars { display: flex; flex-direction: column; gap: 18px; }
-.skill-item {}
-.skill-info {
-  display: flex;
-  justify-content: space-between;
-  font-size: 0.85rem;
-  color: var(--text-2);
-  margin-bottom: 8px;
-  font-weight: 500;
-}
-.skill-pct { color: var(--accent); font-weight: 600; }
-.skill-bar {
-  height: 6px;
-  background: var(--surface-2);
-  border-radius: 3px;
-  overflow: hidden;
-}
-.skill-fill {
-  height: 100%;
-  width: 0;
-  background: linear-gradient(90deg, var(--accent), var(--accent-2));
-  border-radius: 3px;
-  transition: width 1.2s cubic-bezier(0.4,0,0.2,1);
-}
 
 /* ============================================================
    CONTACT
@@ -1059,4 +1035,39 @@ a.contact-value:hover { color: var(--accent); }
 ::selection {
   background: rgba(91,141,238,0.3);
   color: var(--text);
+}
+
+/* ---- VIEW ALL PROJECTS ---- */
+.view-all-container {
+  display: flex;
+  justify-content: center;
+  margin-top: 50px;
+}
+
+.view-all-link {
+  display: inline-flex;
+  align-items: center;
+  gap: 12px;
+  font-family: var(--font-display);
+  font-size: 1rem;
+  font-weight: 700;
+  color: var(--text-2);
+  transition: all var(--t-mid) var(--ease);
+  padding: 10px 20px;
+  border-radius: var(--r-md);
+  border: 1px solid transparent;
+}
+
+.view-all-link svg {
+  transition: transform var(--t-mid) var(--ease);
+}
+
+.view-all-link:hover {
+  color: var(--accent);
+  background: var(--surface);
+  border-color: var(--border);
+}
+
+.view-all-link:hover svg {
+  transform: translateX(6px);
 }

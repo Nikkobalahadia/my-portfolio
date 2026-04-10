@@ -74,7 +74,7 @@ const $$ = (sel, ctx = document) => [...ctx.querySelectorAll(sel)];
 
   const phrases = [
     'Aspiring Developer & System Builder',
-    'PHP & MySQL Backend Engineer',
+    'PHP & MySQL Backend',
     'Windows Forms App Developer',
     'Web UI Enthusiast',
     'Problem Solver with Code',
