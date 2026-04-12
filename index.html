@@ -4,7 +4,14 @@
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>Nikko Balahadia — Developer Portfolio</title>
-  <link rel="stylesheet" href="style.css" />
+  <script type="text/javascript" src="https://cdn.jsdelivr.net/npm/@emailjs/browser@4/dist/email.min.js"></script>
+<script type="text/javascript">
+  (function() {
+    // Replace "YOUR_PUBLIC_KEY" with your actual key from EmailJS Account settings
+    emailjs.init("nfoFRXiDNqfEp04J7");
+  })();
+</script>
+<link rel="stylesheet" href="style.css" />
   <!-- Google Fonts: Syne (display) + DM Sans (body) -->
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
@@ -85,12 +92,11 @@
       <div class="about-grid">
         <div class="about-photo reveal">
           <div class="photo-frame">
-            <div class="photo-placeholder">
-              <span class="photo-initials">NB</span>
-              <div class="photo-rings">
-                <div class="ring ring-1"></div>
-                <div class="ring ring-2"></div>
-              </div>
+            <img src="personal_picture.jpg" alt="Nikko Balahadia" class="profile-image">
+            
+            <div class="photo-rings">
+              <div class="ring ring-1"></div>
+              <div class="ring ring-2"></div>
             </div>
             <div class="photo-accent"></div>
           </div>
@@ -98,13 +104,13 @@
         <div class="about-text reveal">
           <h2 class="section-title">Building Systems,<br><span class="accent">One Line at a Time</span></h2>
           <p class="about-desc">
-            Hi! I'm Nikko, a student developer with a deep interest in software systems and web development. 
+            Hi! I'm Nikko, a 4th year student developer with a deep interest in software systems and web development. 
             I love turning ideas into working applications — whether it's a full management system, 
-            a grade tracking app, or a productivity website.
+            a grade tracking, or a productivity website.
           </p>
           <p class="about-desc">
             Currently honing my skills across the full stack, from crafting responsive UIs with HTML/CSS/JS 
-            to building robust backends with PHP & MySQL, and creating desktop apps using Windows Forms in C#.
+            to building robust backends with PHP & MySQL. I'm passionate about learning new technologies and applying them to solve real-world problems.
           </p>
           <div class="about-tags">
             <span class="tag">🎓 CS Student</span>
@@ -144,7 +150,7 @@
   <img src="nam.png" alt="Nam  Builders Supply Corp" class="project-img">
   <div class="project-overlay">
     <div class="project-links">
-              <a href="#" class="proj-link" title="View Source">
+              <a href="https://github.com/Nikkobalahadia/" class="proj-link" title="View Source">
                 <svg width="18" height="18" viewBox="0 0 24 24" fill="none"><path d="M9 19c-5 1.5-5-2.5-7-3m14 6v-3.87a3.37 3.37 0 0 0-.94-2.61c3.14-.35 6.44-1.54 6.44-7A5.44 5.44 0 0 0 20 4.77 5.07 5.07 0 0 0 19.91 1S18.73.65 16 2.48a13.38 13.38 0 0 0-7 0C6.27.65 5.09 1 5.09 1A5.07 5.07 0 0 0 5 4.77a5.44 5.44 0 0 0-1.5 3.78c0 5.42 3.3 6.61 6.44 7A3.37 3.37 0 0 0 9 18.13V22" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg>
               </a>
               <a href="https://nam-internal.org/" class="proj-link" title="Live Demo">
@@ -172,7 +178,7 @@
   <img src="studybuddy.png" alt="Study Buddy" class="project-img">
   <div class="project-overlay">
     <div class="project-links">
-              <a href="#" class="proj-link" title="View Source">
+              <a href="https://github.com/Nikkobalahadia/" class="proj-link" title="View Source">
                 <svg width="18" height="18" viewBox="0 0 24 24" fill="none"><path d="M9 19c-5 1.5-5-2.5-7-3m14 6v-3.87a3.37 3.37 0 0 0-.94-2.61c3.14-.35 6.44-1.54 6.44-7A5.44 5.44 0 0 0 20 4.77 5.07 5.07 0 0 0 19.91 1S18.73.65 16 2.48a13.38 13.38 0 0 0-7 0C6.27.65 5.09 1 5.09 1A5.07 5.07 0 0 0 5 4.77a5.44 5.44 0 0 0-1.5 3.78c0 5.42 3.3 6.61 6.44 7A3.37 3.37 0 0 0 9 18.13V22" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg>
               </a>
               <a href="https://studdybuddy.tech/" class="proj-link" title="Live Demo">
@@ -184,10 +190,12 @@
           <h3 class="project-title">Study Buddy</h3>
           <p class="project-desc">A collaborative study platform website where students can create study groups, share notes, set study timers, and track learning progress together.</p>
           <div class="project-tech">
-            <span class="tech-tag">HTML</span>
-            <span class="tech-tag">CSS</span>
-            <span class="tech-tag">JavaScript</span>
             <span class="tech-tag">PHP</span>
+            <span class="tech-tag">MySQL</span>
+            <span class="tech-tag">JavaScript</span>
+            <span class="tech-tag">REST API</span>
+            <span class="tech-tag">Full-Stack Development</span>
+            <span class="tech-tag">Caspstone Project</span>
           </div>
         </div>
 
@@ -198,7 +206,7 @@
   <img src="nambuilders.png" alt="Project Name" class="project-img">
   <div class="project-overlay">
     <div class="project-links">
-              <a href="#" class="proj-link" title="View Source">
+              <a href="https://github.com/Nikkobalahadia/" class="proj-link" title="View Source">
                 <svg width="18" height="18" viewBox="0 0 24 24" fill="none"><path d="M9 19c-5 1.5-5-2.5-7-3m14 6v-3.87a3.37 3.37 0 0 0-.94-2.61c3.14-.35 6.44-1.54 6.44-7A5.44 5.44 0 0 0 20 4.77 5.07 5.07 0 0 0 19.91 1S18.73.65 16 2.48a13.38 13.38 0 0 0-7 0C6.27.65 5.09 1 5.09 1A5.07 5.07 0 0 0 5 4.77a5.44 5.44 0 0 0-1.5 3.78c0 5.42 3.3 6.61 6.44 7A3.37 3.37 0 0 0 9 18.13V22" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg>
               </a>
               <a href="https://nambuildersandsupplycorp.com/" class="proj-link" title="Live Demo">
@@ -212,7 +220,6 @@
       showcasing their products, services, and corporate identity to potential clients.</p>
           <div class="project-tech">
             <span class="tech-tag">PHP</span>
-            <span class="tech-tag">CMS Development</span>
             <span class="tech-tag">Front-End Design</span>
             <span class="tech-tag">JavaScript</span>
             <span class="tech-tag">Responsive Design</span>
@@ -228,7 +235,7 @@
   <img src="fittracker.png" alt="FitTracker" class="project-img">
   <div class="project-overlay">
     <div class="project-links">
-              <a href="#" class="proj-link" title="View Source">
+              <a href="https://github.com/Nikkobalahadia/" class="proj-link" title="View Source">
                 <svg width="18" height="18" viewBox="0 0 24 24" fill="none"><path d="M9 19c-5 1.5-5-2.5-7-3m14 6v-3.87a3.37 3.37 0 0 0-.94-2.61c3.14-.35 6.44-1.54 6.44-7A5.44 5.44 0 0 0 20 4.77 5.07 5.07 0 0 0 19.91 1S18.73.65 16 2.48a13.38 13.38 0 0 0-7 0C6.27.65 5.09 1 5.09 1A5.07 5.07 0 0 0 5 4.77a5.44 5.44 0 0 0-1.5 3.78c0 5.42 3.3 6.61 6.44 7A3.37 3.37 0 0 0 9 18.13V22" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg>
               </a>
             </div>
@@ -257,7 +264,7 @@
   <img src="pos-samabaco.png" alt="Project Name" class="project-img">
   <div class="project-overlay">
     <div class="project-links">
-              <a href="#" class="proj-link" title="View Source">
+              <a href="https://github.com/Nikkobalahadia/" class="proj-link" title="View Source">
                 <svg width="18" height="18" viewBox="0 0 24 24" fill="none"><path d="M9 19c-5 1.5-5-2.5-7-3m14 6v-3.87a3.37 3.37 0 0 0-.94-2.61c3.14-.35 6.44-1.54 6.44-7A5.44 5.44 0 0 0 20 4.77 5.07 5.07 0 0 0 19.91 1S18.73.65 16 2.48a13.38 13.38 0 0 0-7 0C6.27.65 5.09 1 5.09 1A5.07 5.07 0 0 0 5 4.77a5.44 5.44 0 0 0-1.5 3.78c0 5.42 3.3 6.61 6.44 7A3.37 3.37 0 0 0 9 18.13V22" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg>
               </a>
             </div>
@@ -344,16 +351,6 @@
 
           <div class="carousel-slide">
             <div class="tech-card">
-              <div class="tech-icon-wrap csharp">
-                <svg viewBox="0 0 32 32" width="48" height="48"><path fill="#9B4F96" d="M16 3l11.66 6.75v13.5L16 29 4.34 22.25V8.75z"/><path fill="#fff" d="M16 7.5A8.5 8.5 0 0 0 7.5 16 8.5 8.5 0 0 0 16 24.5 8.5 8.5 0 0 0 23.38 20h-2.6A6 6 0 0 1 16 22a6 6 0 0 1-6-6 6 6 0 0 1 6-6 6 6 0 0 1 4.78 2.38h2.6A8.5 8.5 0 0 0 16 7.5zm5 7v2h-1v1h1v2h1v-2h1v-2h-1v-1h1v-2h-1v2h-2zm3 0v2h-1v1h1v2h1v-2h1v-2h-1v-1h1v-2h-1v2h-2z"/></svg>
-              </div>
-              <span class="tech-name">C#</span>
-              <span class="tech-sub">Windows Forms</span>
-            </div>
-          </div>
-
-          <div class="carousel-slide">
-            <div class="tech-card">
               <div class="tech-icon-wrap git">
                 <svg viewBox="0 0 32 32" width="48" height="48"><path fill="#F05032" d="M29.47 14.47L17.53 2.53a1.8 1.8 0 0 0-2.55 0l-2.54 2.54 3.22 3.22a2.14 2.14 0 0 1 2.71 2.73l3.1 3.1a2.14 2.14 0 1 1-1.28 1.28l-2.9-2.9v7.63a2.14 2.14 0 1 1-1.76-.07V12.3a2.14 2.14 0 0 1-1.16-2.81L11.1 6.28 2.53 14.85a1.8 1.8 0 0 0 0 2.55l11.94 11.94a1.8 1.8 0 0 0 2.55 0l12.45-12.45a1.8 1.8 0 0 0 0-2.42z"/></svg>
               </div>
@@ -399,7 +396,7 @@
             <div class="contact-icon">📧</div>
             <div>
               <div class="contact-label">Email</div>
-              <a href="mailto:nikko@email.com" class="contact-value">Balahadianikko2015@gmail.com</a>
+              <a href="mailto:Balahadianikko2015@gmail.com" class="contact-value">Balahadianikko2015@gmail.com</a>
             </div>
           </div>
           <div class="contact-item">
@@ -410,15 +407,15 @@
             </div>
           </div>
           <div class="contact-socials">
-            <a href="#" class="social-btn" aria-label="GitHub">
+            <a href="https://github.com/Nikkobalahadia" class="social-btn" aria-label="GitHub">
               <svg width="20" height="20" viewBox="0 0 24 24" fill="none"><path d="M9 19c-5 1.5-5-2.5-7-3m14 6v-3.87a3.37 3.37 0 0 0-.94-2.61c3.14-.35 6.44-1.54 6.44-7A5.44 5.44 0 0 0 20 4.77 5.07 5.07 0 0 0 19.91 1S18.73.65 16 2.48a13.38 13.38 0 0 0-7 0C6.27.65 5.09 1 5.09 1A5.07 5.07 0 0 0 5 4.77a5.44 5.44 0 0 0-1.5 3.78c0 5.42 3.3 6.61 6.44 7A3.37 3.37 0 0 0 9 18.13V22" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg>
               GitHub
             </a>
-            <a href="#" class="social-btn" aria-label="Facebook">
+            <a href="https://www.facebook.com/share/1CaQRXiyq5/" class="social-btn" aria-label="Facebook">
               <svg width="20" height="20" viewBox="0 0 24 24" fill="none"><path d="M18 2h-3a5 5 0 0 0-5 5v3H7v4h3v8h4v-8h3l1-4h-4V7a1 1 0 0 1 1-1h3z" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg>
               Facebook
             </a>
-            <a href="#" class="social-btn" aria-label="LinkedIn">
+            <a href="https://www.linkedin.com/in/nikkobalahadia/" class="social-btn" aria-label="LinkedIn">
               <svg width="20" height="20" viewBox="0 0 24 24" fill="none"><path d="M16 8a6 6 0 0 1 6 6v7h-4v-7a2 2 0 0 0-2-2 2 2 0 0 0-2 2v7h-4v-7a6 6 0 0 1 6-6zM2 9h4v12H2z" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/><circle cx="4" cy="4" r="2" stroke="currentColor" stroke-width="1.5"/></svg>
               LinkedIn
             </a>
@@ -432,7 +429,7 @@
           </div>
           <div class="form-group">
             <label for="email">Email</label>
-            <input type="email" id="email" name="email" placeholder="Balahadianikko2015@gmail.com" required />
+            <input type="email" id="email" name="email" placeholder="your.email" required />
           </div>
           <div class="form-group">
             <label for="message">Message</label>
@@ -455,7 +452,7 @@
   <footer class="footer">
     <div class="footer-inner">
       <div class="footer-logo">NB<span class="logo-dot">.</span></div>
-      <p class="footer-copy">© 2025 Nikko Balahadia. Built with 💙 and lots of coffee.</p>
+      <p class="footer-copy">© 2026 Nikko Balahadia. Built with 💙 and lots of coffee.</p>
       <a href="#home" class="back-to-top" id="backToTop" aria-label="Back to top">
         <svg width="18" height="18" viewBox="0 0 18 18" fill="none"><path d="M9 14V4M5 8l4-4 4 4" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg>
       </a>

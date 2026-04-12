@@ -349,7 +349,7 @@ section { padding: var(--section-py) 0; position: relative; }
 .hero-title {
   font-family: var(--font-display);
   font-size: clamp(3.5rem, 9vw, 7.5rem);
-  font-weight: 800;
+  font-weight: 700;
   line-height: 1;
   letter-spacing: -0.04em;
   margin-bottom: 20px;
@@ -426,7 +426,7 @@ section { padding: var(--section-py) 0; position: relative; }
 
 .scroll-indicator {
   position: absolute;
-  bottom: 32px;
+  bottom: 12px;
   left: 50%;
   transform: translateX(-50%);
   display: flex;
@@ -1003,6 +1003,26 @@ a.contact-value:hover { color: var(--accent); }
   .nav-links.open { transform: translateY(0); }
   .nav-link { padding: 12px 16px; border-radius: var(--r-sm); }
 }
+
+/* Style for your new profile image */
+.profile-image {
+  width: 100%;
+  height: 100%;
+  object-fit: cover; /* Ensures the photo fills the frame without stretching */
+  border-radius: 1rem; /* Matches the theme's rounded corners */
+  position: relative;
+  z-index: 2; /* Keeps image above the background rings */
+}
+
+/* Ensure the frame container handles the image properly */
+.photo-frame {
+  position: relative;
+  width: 100%;
+  max-width: 250px; /* Adjust based on your preference */
+  aspect-ratio: 1 / 1; /* Keeps it a perfect square */
+}
+
+
 
 /* ============================================================
    RESPONSIVE

@@ -311,34 +311,47 @@ const $$ = (sel, ctx = document) => [...ctx.querySelectorAll(sel)];
 })();
 
 /* ============================================================
-   9. CONTACT FORM
+   9. CONTACT FORM (Updated for Auto-Reply)
    ============================================================ */
 (function initContactForm() {
   const form    = $('#contactForm');
   const success = $('#formSuccess');
   if (!form) return;
 
-  form.addEventListener('submit', e => {
+  form.addEventListener('submit', function(e) {
     e.preventDefault();
 
-    const name  = $('#name')?.value.trim();
-    const email = $('#email')?.value.trim();
-    const msg   = $('#message')?.value.trim();
-
-    if (!name || !email || !msg) return;
-
-    // Simulate sending (replace with actual backend/EmailJS)
     const submitBtn = form.querySelector('button[type="submit"]');
+    const btnSpan = submitBtn.querySelector('span');
+    
     submitBtn.disabled = true;
-    submitBtn.querySelector('span').textContent = 'Sending...';
+    btnSpan.textContent = 'Sending...';
 
-    setTimeout(() => {
-      form.reset();
-      submitBtn.disabled = false;
-      submitBtn.querySelector('span').textContent = 'Send Message';
-      success?.classList.add('visible');
-      setTimeout(() => success?.classList.remove('visible'), 5000);
-    }, 1200);
+    const serviceID = 'service_h0ak2sj';
+    const myTemplate = 'template_vthm26p'; 
+    // REPLACE THIS with your 2nd Template ID from the dashboard
+    const replyTemplate = 'template_4ugxzts'; 
+
+    // Send notification to YOU
+    const sendToMe = emailjs.sendForm(serviceID, myTemplate, this);
+    
+    // Send auto-reply to SENDER
+    const sendToUser = emailjs.sendForm(serviceID, replyTemplate, this);
+
+    Promise.all([sendToMe, sendToUser])
+      .then(() => {
+        form.reset();
+        success?.classList.add('visible');
+        setTimeout(() => success?.classList.remove('visible'), 5000);
+      })
+      .catch((error) => {
+        alert("Error sending message: " + JSON.stringify(error));
+        console.error("EmailJS Error:", error);
+      })
+      .finally(() => {
+        submitBtn.disabled = false;
+        btnSpan.textContent = 'Send Message';
+      });
   });
 })();
 
