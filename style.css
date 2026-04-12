@@ -358,7 +358,7 @@ section { padding: var(--section-py) 0; position: relative; }
 .hero-title .accent-line {
   color: transparent;
   -webkit-text-stroke: 2px var(--accent);
-  text-stroke: 2px var(--accent);
+  text-shadow: 2px var(--accent);
   background: linear-gradient(135deg, var(--accent), var(--accent-2));
   -webkit-background-clip: text;
   -webkit-text-fill-color: transparent;
@@ -835,7 +835,6 @@ section { padding: var(--section-py) 0; position: relative; }
   margin-top: 16px;
 }
 
-.contact-info {}
 .contact-item {
   display: flex;
   align-items: flex-start;
@@ -1035,39 +1034,4 @@ a.contact-value:hover { color: var(--accent); }
 ::selection {
   background: rgba(91,141,238,0.3);
   color: var(--text);
-}
-
-/* ---- VIEW ALL PROJECTS ---- */
-.view-all-container {
-  display: flex;
-  justify-content: center;
-  margin-top: 50px;
-}
-
-.view-all-link {
-  display: inline-flex;
-  align-items: center;
-  gap: 12px;
-  font-family: var(--font-display);
-  font-size: 1rem;
-  font-weight: 700;
-  color: var(--text-2);
-  transition: all var(--t-mid) var(--ease);
-  padding: 10px 20px;
-  border-radius: var(--r-md);
-  border: 1px solid transparent;
-}
-
-.view-all-link svg {
-  transition: transform var(--t-mid) var(--ease);
-}
-
-.view-all-link:hover {
-  color: var(--accent);
-  background: var(--surface);
-  border-color: var(--border);
-}
-
-.view-all-link:hover svg {
-  transform: translateX(6px);
 }
