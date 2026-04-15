@@ -736,6 +736,12 @@ section { padding: var(--section-py) 0; position: relative; }
   font-size: 0.95rem;
   color: var(--text);
 }
+.tech-icon-wrap.python {
+  background: rgba(55, 118, 171, 0.1); /* A soft Python-blue tint */
+}
+.tech-icon-wrap.bootstrap {
+  background: rgba(121, 82, 179, 0.1); /* Bootstrap Purple tint */
+}
 .tech-sub {
   font-size: 0.75rem;
   color: var(--text-3);
