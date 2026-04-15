@@ -1,8 +1,4 @@
-/* ============================================================
-   NIKKO BALAHADIA — PORTFOLIO STYLESHEET
-   Author: Claude | Version: 1.0
-   Aesthetic: Dark / Neon Minimal — Refined & Technical
-   ============================================================ */
+
 
 /* ---- RESET & ROOT ---- */
 *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
@@ -986,22 +982,30 @@ a.contact-value:hover { color: var(--accent); }
    MOBILE MENU
    ============================================================ */
 @media (max-width: 768px) {
-  .hamburger { display: flex; }
   .nav-links {
     position: fixed;
-    top: 68px; left: 0; right: 0;
-    background: var(--bg-2);
-    border-bottom: 1px solid var(--border);
+    top: 0;
+    right: -100%; /* Hidden by default */
+    width: 80%;
+    height: 100vh;
+    background: var(--bg-2); /* Ensures it's solid and not transparent */
+    display: flex;
     flex-direction: column;
-    padding: 16px;
-    gap: 4px;
-    transform: translateY(-110%);
-    transition: transform var(--t-mid) var(--ease);
-    z-index: 999;
-    backdrop-filter: blur(20px);
+    align-items: center;
+    justify-content: center;
+    transition: 0.4s ease-in-out;
+    z-index: 999; /* Keeps it above everything else */
+    box-shadow: -10px 0 30px rgba(0, 0, 0, 0.5);
   }
-  .nav-links.open { transform: translateY(0); }
-  .nav-link { padding: 12px 16px; border-radius: var(--r-sm); }
+
+  .nav-links.open {
+    right: 0; /* Slides in when hamburger is clicked */
+  }
+
+  /* Prevent hero content from pushing into the header area */
+  .hero {
+    padding-top: 120px; 
+  }
 }
 
 /* Style for your new profile image */
