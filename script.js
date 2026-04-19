@@ -11,9 +11,26 @@
 const $ = (sel, ctx = document) => ctx.querySelector(sel);
 const $$ = (sel, ctx = document) => [...ctx.querySelectorAll(sel)];
 
-/* ============================================================
-   1. CUSTOM CURSOR
-   ============================================================ */
+(function initCursor() {
+  const cursor = $('#cursor');
+  const follower = $('#cursorFollower');
+  if (!cursor || !follower) return;
+
+  window.addEventListener('mousemove', (e) => {
+    cursor.style.transform = `translate3d(${e.clientX}px, ${e.clientY}px, 0)`;
+    follower.style.transform = `translate3d(${e.clientX}px, ${e.clientY}px, 0)`;
+  });
+
+  $$('a, button, .project-card').forEach(el => {
+    el.addEventListener('mouseenter', () => follower.classList.add('active'));
+    el.addEventListener('mouseleave', () => follower.classList.remove('active'));
+  });
+})();
+
+window.addEventListener('scroll', () => {
+  const filled = Math.min(100, window.scrollY / 5);
+  document.querySelector('.accent-line').style.setProperty('--fill', `${filled}%`);
+});
 
 
 /* ============================================================
@@ -136,98 +153,7 @@ const $$ = (sel, ctx = document) => [...ctx.querySelectorAll(sel)];
 /* ============================================================
    5. TECH STACK CAROUSEL
    ============================================================ */
-(function initCarousel() {
-  const track    = $('#carouselTrack');
-  const viewport = $('#carouselViewport');
-  const prevBtn  = $('#carouselPrev');
-  const nextBtn  = $('#carouselNext');
-  const dotsWrap = $('#carouselDots');
-  if (!track) return;
 
-  const slides      = $$('.carousel-slide', track);
-  const totalSlides = slides.length;
-  let current       = 0;
-  let autoTimer     = null;
-  let slidesVisible = getSlidesVisible();
-
-  // Build dots
-  function buildDots() {
-    dotsWrap.innerHTML = '';
-    const dotCount = Math.ceil(totalSlides / slidesVisible);
-    for (let i = 0; i < dotCount; i++) {
-      const dot = document.createElement('div');
-      dot.className = 'carousel-dot' + (i === 0 ? ' active' : '');
-      dot.addEventListener('click', () => goTo(i * slidesVisible));
-      dotsWrap.appendChild(dot);
-    }
-  }
-
-  function getSlidesVisible() {
-    const vw = viewport.clientWidth;
-    const sw = 180; // approximate slide width
-    return Math.max(1, Math.floor(vw / sw));
-  }
-
-  function getSlideWidth() {
-    if (!slides[0]) return 180;
-    return slides[0].getBoundingClientRect().width ||
-           slides[0].offsetWidth || 180;
-  }
-
-  function goTo(index) {
-    const maxIndex = totalSlides - slidesVisible;
-    current = Math.max(0, Math.min(index, maxIndex));
-    const offset = current * getSlideWidth();
-    track.style.transform = `translateX(-${offset}px)`;
-    updateDots();
-  }
-
-  function updateDots() {
-    const dots = $$('.carousel-dot', dotsWrap);
-    const activeDot = Math.floor(current / slidesVisible);
-    dots.forEach((d, i) => d.classList.toggle('active', i === activeDot));
-  }
-
-  function next() { goTo(current + 1 >= totalSlides - slidesVisible + 1 ? 0 : current + 1); }
-  function prev() { goTo(current - 1 < 0 ? totalSlides - slidesVisible : current - 1); }
-
-  prevBtn?.addEventListener('click', () => { prev(); resetAuto(); });
-  nextBtn?.addEventListener('click', () => { next(); resetAuto(); });
-
-  // Autoplay
-  function startAuto() {
-    autoTimer = setInterval(next, 2800);
-  }
-  function stopAuto() { clearInterval(autoTimer); }
-  function resetAuto() { stopAuto(); startAuto(); }
-
-  // Pause on hover
-  viewport?.addEventListener('mouseenter', stopAuto);
-  viewport?.addEventListener('mouseleave', startAuto);
-
-  // Touch / drag support
-  let touchStartX = 0;
-  viewport?.addEventListener('touchstart', e => {
-    touchStartX = e.touches[0].clientX;
-    stopAuto();
-  }, { passive: true });
-  viewport?.addEventListener('touchend', e => {
-    const diff = touchStartX - e.changedTouches[0].clientX;
-    if (Math.abs(diff) > 40) diff > 0 ? next() : prev();
-    startAuto();
-  });
-
-  // Recalculate on resize
-  window.addEventListener('resize', () => {
-    slidesVisible = getSlidesVisible();
-    buildDots();
-    goTo(current);
-  });
-
-  // Init
-  buildDots();
-  startAuto();
-})();
 
 /* ============================================================
    6. SKILL BARS — Animate when in view

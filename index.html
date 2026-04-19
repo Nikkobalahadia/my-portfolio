@@ -20,12 +20,14 @@
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/devicons/1.8.0/css/devicons.min.css" />
 </head>
 <body>
+  <div class="custom-cursor" id="cursor"></div>
+  <div class="cursor-follower" id="cursorFollower"></div>
 
 
   <!-- ========== NAVBAR ========== -->
   <nav class="navbar" id="navbar">
     <div class="nav-inner">
-      <a href="#home" class="nav-logo">NB<span class="logo-dot">.</span></a>
+      <a href="#home" class="nav-logo">  <span class="logo-dot"> </span></a>
       <ul class="nav-links" id="navLinks">
         <li><a href="#home" class="nav-link active">Home</a></li>
         <li><a href="#about" class="nav-link">About</a></li>
@@ -283,124 +285,53 @@
 
   <!-- ========== TECH STACK CAROUSEL ========== -->
   <section class="stack" id="stack">
-    <div class="container">
-      <div class="section-tag reveal">Technologies</div>
-      <h2 class="section-title center reveal">My Tech <span class="accent">Stack</span></h2>
-      <p class="section-sub reveal">Tools and technologies I work with</p>
-    </div>
-
-    <div class="carousel-wrapper reveal">
-      <button class="carousel-btn carousel-prev" id="carouselPrev" aria-label="Previous">
-        <svg width="20" height="20" viewBox="0 0 20 20" fill="none"><path d="M12 15l-5-5 5-5" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg>
-      </button>
-
-      <div class="carousel-viewport" id="carouselViewport">
-        <div class="carousel-track" id="carouselTrack">
-
-          <div class="carousel-slide">
-            <div class="tech-card">
-              <div class="tech-icon-wrap html">
-                <svg viewBox="0 0 32 32" width="48" height="48"><path fill="#E44D26" d="M5.902 27.201L3.655 2h24.69l-2.25 25.197L15.985 30z"/><path fill="#F16529" d="M16 27.858l8.17-2.265 1.922-21.532H16z"/><path fill="#EBEBEB" d="M16 13.407h-4.09l-.282-3.165H16V7.151H8.25l.074.83.759 8.517H16zm0 8.735l-.014.004-3.442-.929-.22-2.465H9.221l.433 4.852 6.332 1.758.014-.004z"/><path fill="#fff" d="M15.989 13.407v3.091h3.806l-.358 4.009-3.448.93v3.216l6.337-1.757.046-.522.726-8.137.075-.83zm0-6.256v3.091h7.466l.062-.694.141-1.567.074-.83z"/></svg>
-              </div>
-              <span class="tech-name">HTML5</span>
-              <span class="tech-sub">Markup</span>
-            </div>
-          </div>
-
-          <div class="carousel-slide">
-            <div class="tech-card">
-              <div class="tech-icon-wrap css">
-                <svg viewBox="0 0 32 32" width="48" height="48"><path fill="#1572B6" d="M5.902 27.201L3.655 2h24.69l-2.25 25.197L15.985 30z"/><path fill="#33A9DC" d="M16 27.858l8.17-2.265 1.922-21.532H16z"/><path fill="#fff" d="M16 13.407h4.09l-.282 3.09-3.808 1.027v3.228l3.995-1.107h.047l.367-4.115.074-.83.683-7.659H8.25l.074.83.277 3.091H16zm0 7.576v-3.228l-.014.004-3.442-.929-.22-2.465H9.221l.433 4.852 6.332 1.758.014-.004z"/></svg>
-              </div>
-              <span class="tech-name">CSS3</span>
-              <span class="tech-sub">Styling</span>
-            </div>
-          </div>
-
-          <div class="carousel-slide">
-            <div class="tech-card">
-              <div class="tech-icon-wrap js">
-                <svg viewBox="0 0 32 32" width="48" height="48"><path fill="#F7DF1E" d="M0 0h32v32H0z"/><path d="M9.802 24.6c.63 1.022 1.458 1.77 2.916 1.77 1.224 0 2.006-.612 2.006-1.458 0-1.01-.803-1.368-2.15-1.954l-.738-.317c-2.132-.908-3.55-2.042-3.55-4.444 0-2.212 1.684-3.898 4.314-3.898 1.872 0 3.216.65 4.184 2.353l-2.29 1.469c-.504-.9-1.048-1.254-1.894-1.254-.862 0-1.408.546-1.408 1.254 0 .879.546 1.236 1.81 1.786l.738.316c2.513 1.08 3.93 2.173 3.93 4.638 0 2.66-2.088 4.11-4.893 4.11-2.742 0-4.514-1.306-5.376-3.018L9.802 24.6zm10.737.273c.463.818.882 1.51 1.872 1.51.956 0 1.558-.375 1.558-1.83v-9.9h2.827v9.943c0 3.016-1.768 4.39-4.348 4.39-2.33 0-3.683-1.207-4.368-2.661l2.459-1.452z"/></svg>
-              </div>
-              <span class="tech-name">JavaScript</span>
-              <span class="tech-sub">Scripting</span>
-            </div>
-          </div>
-
-              <div class="carousel-slide">
-      <div class="tech-card">
-        <div class="tech-icon-wrap bootstrap">
-          <svg viewBox="0 0 32 32" width="48" height="48">
-            <path fill="#7952b3" d="M16 0C7.16 0 0 7.16 0 16s7.16 16 16 16 16-7.16 16-16S24.84 0 16 0zm7.1 21.6c0 1.6-1.1 2.8-2.6 3.1-1.1.2-2.3.3-3.4.3H10.5V7h6.6c1.1 0 2.2.1 3.3.3 1.5.3 2.6 1.5 2.6 3.1 0 1.3-.7 2.3-1.8 2.8 1.4.5 2.3 1.6 2.3 3.1 0 1.5-1.1 2.7-2.6 3.1 1.4.5 2.2 1.6 2.2 3.2z"/>
-            <path fill="#fff" d="M13.6 10.3v4.2h2.9c1 0 1.8-.8 1.8-1.8 0-1.1-.8-2.4-1.8-2.4h-2.9zm0 7.5v4.5h3.4c1.1 0 1.9-1.2 1.9-2.3 0-1-.8-2.2-1.9-2.2h-3.4z"/>
-          </svg>
-        </div>
-        <span class="tech-name">Bootstrap</span>
-        <span class="tech-sub">UI Framework</span>
+  <div class="container">
+    <div class="section-tag reveal">Expertise</div>
+    <h2 class="section-title reveal">Technical <span class="accent">Proficiency</span></h2>
+    
+    <div class="marquee">
+      <div class="marquee-content">
+        <div class="stack-item"><i class="devicons devicons-html5"></i><span>HTML5</span></div>
+        <div class="stack-item"><i class="devicons devicons-css3"></i><span>CSS3</span></div>
+        <div class="stack-item"><i class="devicons devicons-javascript"></i><span>JavaScript</span></div>
+        <div class="stack-item"><i class="devicons devicons-php"></i><span>PHP</span></div>
+        <div class="stack-item"><i class="devicons devicons-mysql"></i><span>MySQL</span></div>
+        <div class="stack-item"><i class="devicons devicons-bootstrap"></i><span>Bootstrap</span></div>
+        <div class="stack-item"><i class="devicons devicons-git"></i><span>Git</span></div>
+        <div class="stack-item"><i class="devicons devicons-html5"></i><span>HTML5</span></div>
+        <div class="stack-item"><i class="devicons devicons-css3"></i><span>CSS3</span></div>
+        <div class="stack-item"><i class="devicons devicons-javascript"></i><span>JavaScript</span></div>
+        <div class="stack-item"><i class="devicons devicons-php"></i><span>PHP</span></div>
+        <div class="stack-item"><i class="devicons devicons-mysql"></i><span>MySQL</span></div>
+        <div class="stack-item"><i class="devicons devicons-bootstrap"></i><span>Bootstrap</span></div>
+        <div class="stack-item"><i class="devicons devicons-git"></i><span>Git</span></div>
       </div>
     </div>
-
-          <div class="carousel-slide">
-            <div class="tech-card">
-              <div class="tech-icon-wrap php">
-                <svg viewBox="0 0 32 32" width="48" height="48"><ellipse cx="16" cy="16" rx="16" ry="9.5" fill="#8892BF"/><path d="M6.5 20.5l1.5-8H12a3 3 0 0 1 0 6H9.5L9 20.5H6.5zm3.3-4.5h2.2a1 1 0 0 0 0-2H9.8l-.3 1.5.3.5zM18 12.5l-.5 2.5h3l-.5 3H17l-.5 2.5H14l1.5-8H20l-.5 2H18zm3.5 0h2.5a3 3 0 0 1 0 6H22l-.5 2H19l1.5-8zm2.8 4a1 1 0 0 0 0-2h-1.5l-.3 2h1.8z" fill="#fff"/></svg>
-              </div>
-              <span class="tech-name">PHP</span>
-              <span class="tech-sub">Backend</span>
-            </div>
-          </div>
-
-          <div class="carousel-slide">
-            <div class="tech-card">
-              <div class="tech-icon-wrap mysql">
-                <svg viewBox="0 0 32 32" width="48" height="48"><path fill="#00758F" d="M16 3C8.82 3 3 8.82 3 16s5.82 13 13 13 13-5.82 13-13S23.18 3 16 3z"/><path fill="#F29111" d="M22.8 14.2c-.5-.4-1.3-.6-2.4-.6h-3.3l-1 5.6h1.4l.4-2.1h1.6c.8 0 1.4-.1 1.9-.4.5-.3.9-.6 1.2-1.1.3-.5.4-1 .4-1.5-.1-.5-.2-.8-.2-.9zm-1.4 2.1c-.3.3-.7.4-1.3.4h-1.4l.4-2.1h1.4c.5 0 .9.1 1.1.3.2.2.3.5.3.8-.1.3-.2.5-.5.6zM8.2 13.6L7 19.8h1.4l.5-2.6h2.3l.5 2.6h1.4l-1.2-6.2H8.2zm1.6 2.7l.4-1.8h1.5l.3 1.8H9.8zM17.3 19.8l1.2-6.2h-1.4l-1.2 6.2z"/></svg>
-              </div>
-              <span class="tech-name">MySQL</span>
-              <span class="tech-sub">Database</span>
-            </div>
-          </div>
-
-          <div class="carousel-slide">
-  <div class="tech-card">
-    <div class="tech-icon-wrap python">
-      <svg viewBox="0 0 32 32" width="48" height="48">
-        <path fill="#3776AB" d="M15.9 3c-4.4 0-4.1 1.9-4.1 1.9h4.2v.6h-5.9c-2.3 0-4.1 1.9-4.1 4.2v3.1c0 2.3 1.8 4.1 4.1 4.1h1.5v-2.1c0-2.3 1.9-4.2 4.2-4.2h5.9v-.6c0-2.3-1.8-4.2-4.1-4.2l-5.8-.8z"/>
-        <path fill="#FFD43B" d="M16.1 29c4.4 0 4.1-1.9 4.1-1.9h-4.2v-.6h5.9c2.3 0 4.1-1.9 4.1-4.2v-3.1c0-2.3-1.8-4.1-4.1-4.1h-1.5v2.1c0 2.3-1.9 4.2-4.2 4.2h-5.9v.6c0 2.3 1.8 4.2 4.1 4.2l5.8.8z"/>
-      </svg>
-    </div>
-    <span class="tech-name">Python</span>
-    <span class="tech-sub">General/Backend</span>
   </div>
-</div>
+</section>
 
-          <div class="carousel-slide">
-            <div class="tech-card">
-              <div class="tech-icon-wrap git">
-                <svg viewBox="0 0 32 32" width="48" height="48"><path fill="#F05032" d="M29.47 14.47L17.53 2.53a1.8 1.8 0 0 0-2.55 0l-2.54 2.54 3.22 3.22a2.14 2.14 0 0 1 2.71 2.73l3.1 3.1a2.14 2.14 0 1 1-1.28 1.28l-2.9-2.9v7.63a2.14 2.14 0 1 1-1.76-.07V12.3a2.14 2.14 0 0 1-1.16-2.81L11.1 6.28 2.53 14.85a1.8 1.8 0 0 0 0 2.55l11.94 11.94a1.8 1.8 0 0 0 2.55 0l12.45-12.45a1.8 1.8 0 0 0 0-2.42z"/></svg>
-              </div>
-              <span class="tech-name">Git</span>
-              <span class="tech-sub">Version Control</span>
-            </div>
-          </div>
 
-          <div class="carousel-slide">
-            <div class="tech-card">
-              <div class="tech-icon-wrap vscode">
-                <svg viewBox="0 0 32 32" width="48" height="48"><path fill="#0065A9" d="M23.8 2.7L13.5 12.6 6.8 7 4 8.5l7 8.5-7 8.5 2.8 1.5 6.7-5.6 10.3 9.9 4.2-1.8V4.5L23.8 2.7zM24 24.1l-8.2-7.6 8.2-7.7v15.3z"/></svg>
-              </div>
-              <span class="tech-name">VS Code</span>
-              <span class="tech-sub">Editor</span>
-            </div>
-          </div>
-
+<section class="process" id="process">
+    <div class="container">
+      <div class="section-tag reveal">How I Work</div>
+      <h2 class="section-title reveal">From Concept to <span class="accent">Deployment</span></h2>
+      <div class="process-grid">
+        <div class="process-step reveal">
+          <div class="step-num">01</div>
+          <h3>Discovery</h3>
+          <p>Analyzing client requirements and business logic for the system.</p>
+        </div>
+        <div class="process-step reveal">
+          <div class="step-num">02</div>
+          <h3>Development</h3>
+          <p>Writing clean PHP/MySQL code with focus on security and performance.</p>
+        </div>
+        <div class="process-step reveal">
+          <div class="step-num">03</div>
+          <h3>QA & Launch</h3>
+          <p>Rigorous testing followed by seamless deployment to the live server.</p>
         </div>
       </div>
-
-      <button class="carousel-btn carousel-next" id="carouselNext" aria-label="Next">
-        <svg width="20" height="20" viewBox="0 0 20 20" fill="none"><path d="M8 5l5 5-5 5" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg>
-      </button>
-
-      <div class="carousel-dots" id="carouselDots"></div>
     </div>
   </section>
 
@@ -475,7 +406,7 @@
   <!-- ========== FOOTER ========== -->
   <footer class="footer">
     <div class="footer-inner">
-      <div class="footer-logo">NB<span class="logo-dot">.</span></div>
+      <div class="footer-logo"> <span class="logo-dot"> </span></div>
       <p class="footer-copy">© 2026 Nikko Balahadia. Built with 💙 and lots of coffee.</p>
       <a href="#home" class="back-to-top" id="backToTop" aria-label="Back to top">
         <svg width="18" height="18" viewBox="0 0 18 18" fill="none"><path d="M9 14V4M5 8l4-4 4 4" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg>
@@ -483,6 +414,8 @@
     </div>
   </footer>
 
-  <script src="script.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/gsap.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/ScrollTrigger.min.js"></script>
+<script src="script.js"></script>
 </body>
 </html>
