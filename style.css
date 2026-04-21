@@ -833,6 +833,29 @@ section { padding: var(--section-py) 0; position: relative; }
 .proj-row:hover::before { opacity: 1; }
 .proj-row.hidden { display: none; }
 
+/* Promote-to-featured arrow button */
+.proj-promote-btn {
+  background: none;
+  border: none;
+  padding: 6px;
+  color: var(--text-3);
+  border-radius: var(--r-sm);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: color var(--t-fast), background var(--t-fast), transform var(--t-fast);
+  cursor: pointer;
+  flex-shrink: 0;
+}
+.proj-promote-btn:hover {
+  color: var(--accent);
+  background: rgba(91,141,238,0.12);
+  transform: translateX(3px);
+}
+.proj-row:hover .proj-promote-btn {
+  color: var(--text-2);
+}
+
 .proj-row-num {
   font-family: var(--font-display);
   font-size: 0.7rem;

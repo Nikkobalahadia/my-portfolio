@@ -268,12 +268,15 @@ function initCountUp() {
 
 /* ============================================================
    10. PROJECT FILTER — Tab pill + featured + rows
+        + PROMOTE-TO-FEATURED swap on arrow click
    ============================================================ */
 (function initFilter() {
-  const tabs       = qsa('.proj-tab');
-  const pill       = qs('#projTabPill');
-  const featured   = qs('#featuredProject');
-  const rows       = qsa('.proj-row');
+  const tabs     = qsa('.proj-tab');
+  const pill     = qs('#projTabPill');
+  const featured = qs('#featuredProject');
+
+  /* ── helpers ── */
+  function rows() { return qsa('.proj-row'); }
 
   // Position the pill under the active tab
   function movePill(activeTab) {
@@ -286,8 +289,39 @@ function initCountUp() {
     pill.style.transform = `translateX(${tabRect.left - boxRect.left - 4}px)`;
   }
 
+  // Apply current filter visibility
+  function applyFilter(filter) {
+    const featCat  = featured?.dataset.category || '';
+    const showFeat = filter === 'all' || featCat.split(' ').includes(filter);
+    if (featured) {
+      if (showFeat) {
+        featured.classList.remove('hidden');
+        gsap.fromTo(featured, { opacity: 0, y: 16 }, { opacity: 1, y: 0, duration: 0.45, ease: 'power2.out' });
+      } else {
+        featured.classList.add('hidden');
+      }
+    }
+    rows().forEach((row, i) => {
+      const cats = row.dataset.category || '';
+      const show = filter === 'all' || cats.split(' ').includes(filter);
+      if (show) {
+        row.classList.remove('hidden');
+        gsap.fromTo(row,
+          { opacity: 0, x: -12 },
+          { opacity: 1, x: 0, duration: 0.35, delay: i * 0.04, ease: 'power2.out' }
+        );
+      } else {
+        row.classList.add('hidden');
+      }
+    });
+  }
+
+  function activeFilter() {
+    return (qs('.proj-tab.active')?.dataset.filter) || 'all';
+  }
+
   // Init pill position
-  window.addEventListener('load', () => movePill(qs('.proj-tab.active')));
+  window.addEventListener('load',   () => movePill(qs('.proj-tab.active')));
   window.addEventListener('resize', () => movePill(qs('.proj-tab.active')));
 
   tabs.forEach(tab => {
@@ -296,40 +330,187 @@ function initCountUp() {
       tab.classList.add('active');
       tab.setAttribute('aria-selected', 'true');
       movePill(tab);
-
-      const filter = tab.dataset.filter;
-
-      // Featured (category: web — always project 1)
-      const featCat = featured?.dataset.category || '';
-      const showFeat = filter === 'all' || featCat.includes(filter);
-      if (featured) {
-        if (showFeat) {
-          featured.classList.remove('hidden');
-          gsap.fromTo(featured, { opacity: 0, y: 16 }, { opacity: 1, y: 0, duration: 0.45, ease: 'power2.out' });
-        } else {
-          featured.classList.add('hidden');
-        }
-      }
-
-      // Rows
-      rows.forEach((row, i) => {
-        const cats = row.dataset.category || '';
-        const show = filter === 'all' || cats.includes(filter);
-        if (show) {
-          row.classList.remove('hidden');
-          gsap.fromTo(row,
-            { opacity: 0, x: -12 },
-            { opacity: 1, x: 0, duration: 0.35, delay: i * 0.04, ease: 'power2.out' }
-          );
-        } else {
-          row.classList.add('hidden');
-        }
-      });
+      applyFilter(tab.dataset.filter);
     });
   });
 
   // Init pill on DOM ready
   requestAnimationFrame(() => movePill(qs('.proj-tab.active')));
+
+  /* ── PROMOTE TO FEATURED ── */
+  /*
+   * When the arrow (proj-promote-btn) on any row is clicked:
+   * 1. Read the clicked row's data-* attributes
+   * 2. Snapshot the current featured project's data-* attributes
+   * 3. Rebuild the featured card with the row's data
+   * 4. Rebuild the row with the old featured data
+   * 5. Animate both in/out with GSAP
+   * 6. Re-apply the current filter so visibility stays consistent
+   */
+
+  function buildStatusBadge(status) {
+    if (status === 'live') {
+      return `<em class="status-live">Live</em>`;
+    }
+    return `<em style="color:var(--text-2);font-style:normal;">In Progress</em>`;
+  }
+
+  function buildFeaturedLinks(github, live) {
+    let html = '';
+    if (github) {
+      html += `
+        <a href="${github}" class="proj-feat-link" target="_blank" rel="noopener" title="Source">
+          <svg width="18" height="18" viewBox="0 0 24 24" fill="none" aria-hidden="true"><path d="M9 19c-5 1.5-5-2.5-7-3m14 6v-3.87a3.37 3.37 0 0 0-.94-2.61c3.14-.35 6.44-1.54 6.44-7A5.44 5.44 0 0 0 20 4.77 5.07 5.07 0 0 0 19.91 1S18.73.65 16 2.48a13.38 13.38 0 0 0-7 0C6.27.65 5.09 1 5.09 1A5.07 5.07 0 0 0 5 4.77a5.44 5.44 0 0 0-1.5 3.78c0 5.42 3.3 6.61 6.44 7A3.37 3.37 0 0 0 9 18.13V22" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg>
+          GitHub
+        </a>`;
+    }
+    if (live) {
+      html += `
+        <a href="${live}" class="proj-feat-link proj-feat-link--primary" target="_blank" rel="noopener" title="Live">
+          <svg width="18" height="18" viewBox="0 0 24 24" fill="none" aria-hidden="true"><path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6M15 3h6v6M10 14L21 3" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg>
+          Live Demo
+        </a>`;
+    }
+    return html;
+  }
+
+  function buildRowLinks(github, live) {
+    let html = '';
+    if (github) {
+      html += `
+        <a href="${github}" class="proj-row-link" target="_blank" rel="noopener" aria-label="Source">
+          <svg width="16" height="16" viewBox="0 0 24 24" fill="none" aria-hidden="true"><path d="M9 19c-5 1.5-5-2.5-7-3m14 6v-3.87a3.37 3.37 0 0 0-.94-2.61c3.14-.35 6.44-1.54 6.44-7A5.44 5.44 0 0 0 20 4.77 5.07 5.07 0 0 0 19.91 1S18.73.65 16 2.48a13.38 13.38 0 0 0-7 0C6.27.65 5.09 1 5.09 1A5.07 5.07 0 0 0 5 4.77a5.44 5.44 0 0 0-1.5 3.78c0 5.42 3.3 6.61 6.44 7A3.37 3.37 0 0 0 9 18.13V22" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg>
+        </a>`;
+    }
+    if (live) {
+      html += `
+        <a href="${live}" class="proj-row-link" target="_blank" rel="noopener" aria-label="Live">
+          <svg width="16" height="16" viewBox="0 0 24 24" fill="none" aria-hidden="true"><path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6M15 3h6v6M10 14L21 3" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg>
+        </a>`;
+    }
+    return html;
+  }
+
+  function buildTechTags(tagsStr) {
+    return tagsStr.split(',').map(t => `<span class="tech-tag">${t.trim()}</span>`).join('');
+  }
+
+  function promoteProjToFeatured(rowEl) {
+    if (!featured) return;
+
+    // ── Snapshot ROW data (incoming) — plain copy so it won't change ──
+    const d = { ...rowEl.dataset };
+
+    // ── Snapshot FEATURED data (outgoing → goes back to list) — plain copy BEFORE we mutate featured ──
+    const f = { ...featured.dataset };
+
+    /* -- Animate featured card OUT -- */
+    gsap.to(featured, {
+      opacity: 0, y: -20, duration: 0.3, ease: 'power2.in',
+      onComplete: () => {
+
+        /* ── Update featured card DOM ── */
+        // data-* attributes
+        featured.dataset.category    = d.category || '';
+        featured.dataset.projId      = d.projId;
+        featured.dataset.projImg     = d.projImg;
+        featured.dataset.projAlt     = d.projAlt;
+        featured.dataset.projIndex   = d.projIndex;
+        featured.dataset.projTitle   = d.projTitle;
+        featured.dataset.projDesc    = d.projDesc;
+        featured.dataset.projTags    = d.projTags;
+        featured.dataset.projRole    = d.projRole;
+        featured.dataset.projType    = d.projType;
+        featured.dataset.projStatus  = d.projStatus;
+        featured.dataset.projGithub  = d.projGithub;
+        featured.dataset.projLive    = d.projLive;
+
+        // image
+        const featImg = qs('.proj-feat-image img', featured);
+        if (featImg) { featImg.src = d.projImg; featImg.alt = d.projAlt; }
+
+        // links
+        const featLinks = qs('.proj-feat-links', featured);
+        if (featLinks) featLinks.innerHTML = buildFeaturedLinks(d.projGithub, d.projLive);
+
+        // body
+        const featIndex  = qs('.proj-feat-index',  featured);
+        const featTitle  = qs('.proj-feat-title',  featured);
+        const featDesc   = qs('.proj-feat-desc',   featured);
+        const featTech   = qs('.project-tech',     featured);
+        const detailsLis = qs('.proj-feat-details', featured);
+
+        if (featIndex) featIndex.textContent = d.projIndex;
+        if (featTitle) featTitle.innerHTML   = d.projTitle;
+        if (featDesc)  featDesc.textContent  = d.projDesc;
+        if (featTech)  featTech.innerHTML    = buildTechTags(d.projTags);
+        if (detailsLis) {
+          detailsLis.innerHTML = `
+            <li><span>Role</span>${d.projRole}</li>
+            <li><span>Type</span>${d.projType}</li>
+            <li><span>Status</span>${buildStatusBadge(d.projStatus)}</li>
+          `;
+        }
+
+        /* ── Update ROW with old featured data ── */
+        rowEl.dataset.category   = f.category || '';
+        rowEl.dataset.projId     = f.projId;
+        rowEl.dataset.projImg    = f.projImg;
+        rowEl.dataset.projAlt    = f.projAlt;
+        rowEl.dataset.projIndex  = f.projIndex;
+        rowEl.dataset.projTitle  = f.projTitle;
+        rowEl.dataset.projDesc   = f.projDesc;
+        rowEl.dataset.projTags   = f.projTags;
+        rowEl.dataset.projRole   = f.projRole;
+        rowEl.dataset.projType   = f.projType;
+        rowEl.dataset.projStatus = f.projStatus;
+        rowEl.dataset.projGithub = f.projGithub;
+        rowEl.dataset.projLive   = f.projLive;
+
+        qs('.proj-row-num', rowEl).textContent = f.projIndex;
+
+        const rowThumbImg = qs('.proj-row-thumb img', rowEl);
+        if (rowThumbImg) { rowThumbImg.src = f.projImg; rowThumbImg.alt = f.projAlt; }
+
+        qs('.proj-row-title', rowEl).textContent = f.projTitle;
+        qs('.proj-row-desc',  rowEl).textContent = f.projDesc;
+        qs('.project-tech',   rowEl).innerHTML   = buildTechTags(f.projTags);
+
+        const rowLinks = qs('.proj-row-links', rowEl);
+        if (rowLinks) rowLinks.innerHTML = buildRowLinks(f.projGithub, f.projLive);
+
+        /* ── Animate featured card IN ── */
+        gsap.fromTo(featured,
+          { opacity: 0, y: 20 },
+          { opacity: 1, y: 0, duration: 0.45, ease: 'power2.out' }
+        );
+
+        /* ── Animate row ── */
+        gsap.fromTo(rowEl,
+          { opacity: 0, x: -16 },
+          { opacity: 1, x: 0, duration: 0.35, ease: 'power2.out' }
+        );
+
+        /* ── Re-apply filter so visibility stays correct ── */
+        applyFilter(activeFilter());
+      }
+    });
+
+    /* Flash the row out slightly while featured swaps */
+    gsap.to(rowEl, { opacity: 0, x: 16, duration: 0.25, ease: 'power2.in' });
+  }
+
+  /* Delegate arrow clicks (works even after DOM rebuilds) */
+  const projList = qs('#projList');
+  if (projList) {
+    projList.addEventListener('click', e => {
+      const btn = e.target.closest('.proj-promote-btn');
+      if (!btn) return;
+      e.stopPropagation();
+      const row = btn.closest('.proj-row');
+      if (row) promoteProjToFeatured(row);
+    });
+  }
 })();
 
 /* ============================================================
