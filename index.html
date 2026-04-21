@@ -4,39 +4,50 @@
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>Nikko Balahadia — Developer Portfolio</title>
-  <script type="text/javascript" src="https://cdn.jsdelivr.net/npm/@emailjs/browser@4/dist/email.min.js"></script>
-<script type="text/javascript">
-  (function() {
-    // Replace "YOUR_PUBLIC_KEY" with your actual key from EmailJS Account settings
-    emailjs.init("nfoFRXiDNqfEp04J7");
-  })();
-</script>
-<link rel="stylesheet" href="style.css" />
-  <!-- Google Fonts: Syne (display) + DM Sans (body) -->
+
+  <!-- EmailJS -->
+  <script src="https://cdn.jsdelivr.net/npm/@emailjs/browser@4/dist/email.min.js"></script>
+  <script>emailjs.init("nfoFRXiDNqfEp04J7");</script>
+
+  <!-- GSAP + ScrollTrigger -->
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/gsap.min.js" defer></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/ScrollTrigger.min.js" defer></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/TextPlugin.min.js" defer></script>
+
+  <!-- Fonts: Clash Display (display) + Cabinet Grotesk (body) -->
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
   <link href="https://fonts.googleapis.com/css2?family=Syne:wght@400;600;700;800&family=DM+Sans:ital,opsz,wght@0,9..40,300;0,9..40,400;0,9..40,500;1,9..40,300&display=swap" rel="stylesheet" />
-  <!-- Devicons for tech logos -->
+
+  <!-- Devicons -->
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/devicons/1.8.0/css/devicons.min.css" />
+
+  <link rel="stylesheet" href="style.css" />
 </head>
 <body>
-  <div class="custom-cursor" id="cursor"></div>
+
+  <!-- Custom Cursor -->
+  <div class="cursor" id="cursor"></div>
   <div class="cursor-follower" id="cursorFollower"></div>
 
+  <!-- Noise Overlay -->
+  <div class="noise-overlay" aria-hidden="true"></div>
 
-  <!-- ========== NAVBAR ========== -->
+  <!-- ===== NAVBAR ===== -->
   <nav class="navbar" id="navbar">
     <div class="nav-inner">
-      <a href="#home" class="nav-logo">  <span class="logo-dot"> </span></a>
+      <a href="#home" class="nav-logo">
+        <span class="logo-bracket">[</span>NB<span class="logo-bracket">]</span>
+      </a>
       <ul class="nav-links" id="navLinks">
-        <li><a href="#home" class="nav-link active">Home</a></li>
-        <li><a href="#about" class="nav-link">About</a></li>
+        <li><a href="#home"     class="nav-link active">Home</a></li>
+        <li><a href="#about"    class="nav-link">About</a></li>
         <li><a href="#projects" class="nav-link">Projects</a></li>
-        <li><a href="#stack" class="nav-link">Stack</a></li>
-        <li><a href="#contact" class="nav-link">Contact</a></li>
+        <li><a href="#stack"    class="nav-link">Stack</a></li>
+        <li><a href="#contact"  class="nav-link">Contact</a></li>
       </ul>
       <div class="nav-actions">
-        <button class="theme-toggle" id="themeToggle" aria-label="Toggle dark mode">
+        <button class="theme-toggle" id="themeToggle" aria-label="Toggle theme">
           <span class="theme-icon">☀</span>
         </button>
         <button class="hamburger" id="hamburger" aria-label="Menu">
@@ -46,287 +57,410 @@
     </div>
   </nav>
 
-  <!-- ========== HERO ========== -->
+  <!-- ===== HERO ===== -->
   <section class="hero" id="home">
+    <!-- Animated grid background -->
+    <div class="hero-grid" aria-hidden="true"></div>
+
+    <!-- Floating orbs -->
+    <div class="orb orb-1" aria-hidden="true"></div>
+    <div class="orb orb-2" aria-hidden="true"></div>
+
     <div class="hero-content">
-      <div class="hero-badge reveal">
+      <div class="hero-badge" id="heroBadge">
         <span class="badge-dot"></span>
         Available for projects
       </div>
-      <h1 class="hero-title reveal">
-        <span class="line">Nikko</span>
-        <span class="line accent-line">Balahadia</span>
+
+      <h1 class="hero-title">
+        <span class="hero-line" id="heroLine1">Nikko</span>
+        <span class="hero-line hero-line--stroke" id="heroLine2">Balahadia</span>
       </h1>
-      <p class="hero-tagline reveal">
+
+      <p class="hero-tagline">
         <span class="typing-text" id="typingText"></span><span class="cursor-blink">|</span>
       </p>
-      <p class="hero-desc reveal">
+
+      <p class="hero-desc" id="heroDesc">
         Student developer passionate about building functional systems,<br>
         clean interfaces, and solving real-world problems through code.
       </p>
-      <div class="hero-actions reveal">
+
+      <div class="hero-actions" id="heroActions">
         <a href="#projects" class="btn btn-primary">
           <span>View My Work</span>
-          <svg width="16" height="16" viewBox="0 0 16 16" fill="none"><path d="M3 8h10M9 4l4 4-4 4" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg>
+          <svg width="16" height="16" viewBox="0 0 16 16" fill="none" aria-hidden="true">
+            <path d="M3 8h10M9 4l4 4-4 4" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+          </svg>
         </a>
         <a href="#contact" class="btn btn-ghost">Get in Touch</a>
       </div>
-      <div class="hero-stats reveal">
-        <div class="stat"><span class="stat-num">4+</span><span class="stat-label">Projects</span></div>
+
+      <div class="hero-stats" id="heroStats">
+        <div class="stat">
+          <span class="stat-num">4+</span>
+          <span class="stat-label">Projects</span>
+        </div>
         <div class="stat-divider"></div>
-        <div class="stat"><span class="stat-num">6+</span><span class="stat-label">Technologies</span></div>
+        <div class="stat">
+          <span class="stat-num">6+</span>
+          <span class="stat-label">Technologies</span>
+        </div>
         <div class="stat-divider"></div>
-        <div class="stat"><span class="stat-num">∞</span><span class="stat-label">Curiosity</span></div>
+        <div class="stat">
+          <span class="stat-num">∞</span>
+          <span class="stat-label">Curiosity</span>
+        </div>
       </div>
     </div>
-    <div class="scroll-indicator">
+
+    <div class="scroll-indicator" id="scrollIndicator">
       <span>Scroll</span>
       <div class="scroll-line"><div class="scroll-dot"></div></div>
     </div>
   </section>
 
-  <!-- ========== ABOUT ========== -->
+  <!-- ===== ABOUT ===== -->
   <section class="about" id="about">
     <div class="container">
-      <div class="section-tag reveal">Who I Am</div>
+      <div class="section-tag gsap-reveal">Who I Am</div>
       <div class="about-grid">
-        <div class="about-photo reveal">
+
+        <div class="about-photo gsap-reveal">
           <div class="photo-frame">
-            <img src="personal_picture.jpg" alt="Nikko Balahadia" class="profile-image">
-            
-            <div class="photo-rings">
+            <img src="personal_picture.jpg" alt="Nikko Balahadia" class="profile-image" />
+            <div class="photo-rings" aria-hidden="true">
               <div class="ring ring-1"></div>
               <div class="ring ring-2"></div>
             </div>
-            <div class="photo-accent"></div>
+            <div class="photo-accent" aria-hidden="true"></div>
           </div>
         </div>
-        <div class="about-text reveal">
-          <h2 class="section-title">Building Systems,<br><span class="accent">One Line at a Time</span></h2>
-          <p class="about-desc">
-            Hi! I'm Nikko, a 4th year student developer with a deep interest in software systems and web development. 
-            I love turning ideas into working applications — whether it's a full management system, 
-            a grade tracking, or a productivity website.
+
+        <div class="about-text">
+          <h2 class="section-title gsap-reveal">
+            Building Systems,<br><span class="accent">One Line at a Time</span>
+          </h2>
+          <p class="about-desc gsap-reveal">
+            Hi! I'm Nikko, a 4th year student developer with a deep interest in software systems and
+            web development. I love turning ideas into working applications — whether it's a full
+            management system, a grade tracker, or a productivity website.
           </p>
-          <p class="about-desc">
-            Currently honing my skills across the full stack, from crafting responsive UIs with HTML/CSS/JS 
-            to building robust backends with PHP & MySQL. I'm passionate about learning new technologies and applying them to solve real-world problems.
+          <p class="about-desc gsap-reveal">
+            Currently honing my skills across the full stack, from crafting responsive UIs with
+            HTML/CSS/JS to building robust backends with PHP & MySQL. Passionate about learning new
+            technologies and applying them to solve real-world problems.
           </p>
-          <div class="about-tags">
+          <div class="about-tags gsap-reveal">
             <span class="tag">🎓 IT Student</span>
             <span class="tag">💻 System Builder</span>
             <span class="tag">🌐 Web Dev</span>
             <span class="tag">🛠 Problem Solver</span>
           </div>
-          <a href="Resume - Niks.pdf" class="btn btn-outline" download>
-            <svg width="16" height="16" viewBox="0 0 16 16" fill="none"><path d="M8 2v8M5 7l3 3 3-3M2 12h12" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg>
+          <a href="Resume - Niks.pdf" class="btn btn-outline gsap-reveal" download>
+            <svg width="16" height="16" viewBox="0 0 16 16" fill="none" aria-hidden="true">
+              <path d="M8 2v8M5 7l3 3 3-3M2 12h12" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+            </svg>
             Download Resume
           </a>
         </div>
+
       </div>
     </div>
   </section>
 
-  <!-- ========== PROJECTS ========== -->
+  <!-- ===== PROJECTS ===== -->
   <section class="projects" id="projects">
     <div class="container">
-      <div class="section-tag reveal">My Work</div>
-      <h2 class="section-title center reveal">Featured <span class="accent">Projects</span></h2>
-      <p class="section-sub reveal">A selection of systems and apps I've built from scratch</p>
 
-      <!-- Filter Buttons -->
-      <div class="filter-btns reveal">
-        <button class="filter-btn active" data-filter="all">All</button>
-        <button class="filter-btn" data-filter="web">Web</button>
-        <button class="filter-btn" data-filter="desktop">Desktop</button>
-        <button class="filter-btn" data-filter="system">System</button>
+      <!-- Header row -->
+      <div class="proj-header">
+        <div>
+          <div class="section-tag gsap-reveal">My Work</div>
+          <h2 class="section-title gsap-reveal">Selected <span class="accent">Projects</span></h2>
+        </div>
+        <!-- Filter tabs with sliding pill -->
+        <div class="proj-tabs gsap-reveal" id="projTabs" role="tablist">
+          <div class="proj-tab-pill" id="projTabPill" aria-hidden="true"></div>
+          <button class="proj-tab active" data-filter="all"     role="tab" aria-selected="true">All</button>
+          <button class="proj-tab"        data-filter="web"     role="tab" aria-selected="false">Web</button>
+          <button class="proj-tab"        data-filter="desktop" role="tab" aria-selected="false">Desktop</button>
+          <button class="proj-tab"        data-filter="system"  role="tab" aria-selected="false">System</button>
+        </div>
       </div>
 
-      <div class="projects-grid">
-        <!-- Project 1 -->
-        <div class="project-card reveal" data-category="web">
-          <div class="project-number">01</div>
-          <div class="project-image-wrapper">
-  <img src="nam.png" alt="Nam  Builders Supply Corp" class="project-img">
-  <div class="project-overlay">
-    <div class="project-links">
-              <a href="https://github.com/Nikkobalahadia/" class="proj-link" title="View Source">
-                <svg width="18" height="18" viewBox="0 0 24 24" fill="none"><path d="M9 19c-5 1.5-5-2.5-7-3m14 6v-3.87a3.37 3.37 0 0 0-.94-2.61c3.14-.35 6.44-1.54 6.44-7A5.44 5.44 0 0 0 20 4.77 5.07 5.07 0 0 0 19.91 1S18.73.65 16 2.48a13.38 13.38 0 0 0-7 0C6.27.65 5.09 1 5.09 1A5.07 5.07 0 0 0 5 4.77a5.44 5.44 0 0 0-1.5 3.78c0 5.42 3.3 6.61 6.44 7A3.37 3.37 0 0 0 9 18.13V22" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg>
-              </a>
-              <a href="https://nam-internal.org/" class="proj-link" title="Live Demo">
-                <svg width="18" height="18" viewBox="0 0 24 24" fill="none"><path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6M15 3h6v6M10 14L21 3" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg>
-              </a>
-              </div>
-            </div>
-          </div>
-          <h3 class="project-title">NAM Builders Supply Corp - Inventory & Sales Analytics System</h3>
-          <p class="project-desc">A comprehensive system designed to track inventory levels and provide data-driven sales insights for a construction supply business.</p>
-          <div class="project-tech">
-            <span class="tech-tag">PHP</span>
-            <span class="tech-tag">Full-Stack Development</span>
-            <span class="tech-tag">Data Analytics</span>
-            <span class="tech-tag">Database Management</span>
-            <span class="tech-tag">System Architecture</span>
-            <span class="tech-tag">Business Intelligence</span>
+      <!-- ── FEATURED (first project, large spotlight) ── -->
+      <div class="proj-featured gsap-reveal" data-category="web" id="featuredProject">
+        <div class="proj-feat-image">
+          <img src="nam.png" alt="NAM Builders Supply Corp" loading="lazy" />
+          <div class="proj-feat-badge">Featured</div>
+          <div class="proj-feat-links">
+            <a href="https://github.com/Nikkobalahadia/" class="proj-feat-link" target="_blank" rel="noopener" title="Source">
+              <svg width="18" height="18" viewBox="0 0 24 24" fill="none" aria-hidden="true"><path d="M9 19c-5 1.5-5-2.5-7-3m14 6v-3.87a3.37 3.37 0 0 0-.94-2.61c3.14-.35 6.44-1.54 6.44-7A5.44 5.44 0 0 0 20 4.77 5.07 5.07 0 0 0 19.91 1S18.73.65 16 2.48a13.38 13.38 0 0 0-7 0C6.27.65 5.09 1 5.09 1A5.07 5.07 0 0 0 5 4.77a5.44 5.44 0 0 0-1.5 3.78c0 5.42 3.3 6.61 6.44 7A3.37 3.37 0 0 0 9 18.13V22" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg>
+              GitHub
+            </a>
+            <a href="https://nam-internal.org/" class="proj-feat-link proj-feat-link--primary" target="_blank" rel="noopener" title="Live">
+              <svg width="18" height="18" viewBox="0 0 24 24" fill="none" aria-hidden="true"><path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6M15 3h6v6M10 14L21 3" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg>
+              Live Demo
+            </a>
           </div>
         </div>
-       
-                <!-- Project 2 -->
-        <div class="project-card reveal" data-category="web">
-          <div class="project-number">02</div>
-          <div class="project-image-wrapper">
-  <img src="studybuddy.png" alt="Study Buddy" class="project-img">
-  <div class="project-overlay">
-    <div class="project-links">
-              <a href="https://github.com/Nikkobalahadia/" class="proj-link" title="View Source">
-                <svg width="18" height="18" viewBox="0 0 24 24" fill="none"><path d="M9 19c-5 1.5-5-2.5-7-3m14 6v-3.87a3.37 3.37 0 0 0-.94-2.61c3.14-.35 6.44-1.54 6.44-7A5.44 5.44 0 0 0 20 4.77 5.07 5.07 0 0 0 19.91 1S18.73.65 16 2.48a13.38 13.38 0 0 0-7 0C6.27.65 5.09 1 5.09 1A5.07 5.07 0 0 0 5 4.77a5.44 5.44 0 0 0-1.5 3.78c0 5.42 3.3 6.61 6.44 7A3.37 3.37 0 0 0 9 18.13V22" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg>
-              </a>
-              <a href="https://studdybuddy.tech/" class="proj-link" title="Live Demo">
-                <svg width="18" height="18" viewBox="0 0 24 24" fill="none"><path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6M15 3h6v6M10 14L21 3" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg>
-              </a>
-    </div>
-            </div>
-          </div>
-          <h3 class="project-title">Study Buddy</h3>
-          <p class="project-desc">A collaborative study platform website where students can create study groups, share notes, set study timers, and track learning progress together.</p>
+        <div class="proj-feat-body">
+          <span class="proj-feat-index">01</span>
+          <h3 class="proj-feat-title">NAM Builders — Inventory &amp; Sales Analytics</h3>
+          <p class="proj-feat-desc">A comprehensive internal system designed to track inventory levels and provide data-driven sales insights for a construction supply business. Built full-stack from database schema to dashboard UI.</p>
+          <ul class="proj-feat-details">
+            <li><span>Role</span>Full-Stack Developer</li>
+            <li><span>Type</span>Web Application</li>
+            <li><span>Status</span><em class="status-live">Live</em></li>
+          </ul>
           <div class="project-tech">
             <span class="tech-tag">PHP</span>
             <span class="tech-tag">MySQL</span>
-            <span class="tech-tag">JavaScript</span>
-            <span class="tech-tag">REST API</span>
-            <span class="tech-tag">Full-Stack Development</span>
-            <span class="tech-tag">Caspstone Project</span>
+            <span class="tech-tag">Data Analytics</span>
+            <span class="tech-tag">System Architecture</span>
+          </div>
+        </div>
+      </div>
+
+      <!-- ── PROJECT LIST (remaining projects as horizontal rows) ── -->
+      <div class="proj-list" id="projList">
+
+        <!-- Project 2 -->
+        <div class="proj-row gsap-reveal" data-category="web">
+          <div class="proj-row-num">02</div>
+          <div class="proj-row-thumb">
+            <img src="studybuddy.png" alt="Study Buddy" loading="lazy" />
+          </div>
+          <div class="proj-row-info">
+            <h3 class="proj-row-title">Study Buddy</h3>
+            <p class="proj-row-desc">A collaborative study platform where students create groups, share notes, set timers, and track learning progress together.</p>
+            <div class="project-tech">
+              <span class="tech-tag">PHP</span>
+              <span class="tech-tag">MySQL</span>
+              <span class="tech-tag">JavaScript</span>
+              <span class="tech-tag">REST API</span>
+            </div>
+          </div>
+          <div class="proj-row-links">
+            <a href="https://github.com/Nikkobalahadia/" class="proj-row-link" target="_blank" rel="noopener" aria-label="Source">
+              <svg width="16" height="16" viewBox="0 0 24 24" fill="none" aria-hidden="true"><path d="M9 19c-5 1.5-5-2.5-7-3m14 6v-3.87a3.37 3.37 0 0 0-.94-2.61c3.14-.35 6.44-1.54 6.44-7A5.44 5.44 0 0 0 20 4.77 5.07 5.07 0 0 0 19.91 1S18.73.65 16 2.48a13.38 13.38 0 0 0-7 0C6.27.65 5.09 1 5.09 1A5.07 5.07 0 0 0 5 4.77a5.44 5.44 0 0 0-1.5 3.78c0 5.42 3.3 6.61 6.44 7A3.37 3.37 0 0 0 9 18.13V22" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg>
+            </a>
+            <a href="https://studdybuddy.tech/" class="proj-row-link" target="_blank" rel="noopener" aria-label="Live">
+              <svg width="16" height="16" viewBox="0 0 24 24" fill="none" aria-hidden="true"><path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6M15 3h6v6M10 14L21 3" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg>
+            </a>
+          </div>
+          <div class="proj-row-arrow" aria-hidden="true">
+            <svg width="20" height="20" viewBox="0 0 24 24" fill="none"><path d="M5 12h14M13 6l6 6-6 6" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg>
           </div>
         </div>
 
-                        <!-- Project 3 -->
-        <div class="project-card reveal" data-category="web">
-          <div class="project-number">03</div>
-          <div class="project-image-wrapper">
-  <img src="nambuilders.png" alt="Project Name" class="project-img">
-  <div class="project-overlay">
-    <div class="project-links">
-              <a href="https://github.com/Nikkobalahadia/" class="proj-link" title="View Source">
-                <svg width="18" height="18" viewBox="0 0 24 24" fill="none"><path d="M9 19c-5 1.5-5-2.5-7-3m14 6v-3.87a3.37 3.37 0 0 0-.94-2.61c3.14-.35 6.44-1.54 6.44-7A5.44 5.44 0 0 0 20 4.77 5.07 5.07 0 0 0 19.91 1S18.73.65 16 2.48a13.38 13.38 0 0 0-7 0C6.27.65 5.09 1 5.09 1A5.07 5.07 0 0 0 5 4.77a5.44 5.44 0 0 0-1.5 3.78c0 5.42 3.3 6.61 6.44 7A3.37 3.37 0 0 0 9 18.13V22" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg>
-              </a>
-              <a href="https://nambuildersandsupplycorp.com/" class="proj-link" title="Live Demo">
-                <svg width="18" height="18" viewBox="0 0 24 24" fill="none"><path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6M15 3h6v6M10 14L21 3" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg>
-              </a>
-    </div>
+        <!-- Project 3 -->
+        <div class="proj-row gsap-reveal" data-category="web">
+          <div class="proj-row-num">03</div>
+          <div class="proj-row-thumb">
+            <img src="nambuilders.png" alt="NAM Builders Website" loading="lazy" />
+          </div>
+          <div class="proj-row-info">
+            <h3 class="proj-row-title">NAM Builders — Official Website</h3>
+            <p class="proj-row-desc">A professional, responsive landing page showcasing products, services, and corporate identity for a construction supply company.</p>
+            <div class="project-tech">
+              <span class="tech-tag">PHP</span>
+              <span class="tech-tag">JavaScript</span>
+              <span class="tech-tag">Responsive Design</span>
+              <span class="tech-tag">MySQL</span>
             </div>
           </div>
-          <h3 class="project-title">NAM Builders Supply Corp - Official Website</h3>
-          <p class="project-desc">A professional, responsive landing page for NAM Builders Supply Corp, 
-      showcasing their products, services, and corporate identity to potential clients.</p>
-          <div class="project-tech">
-            <span class="tech-tag">PHP</span>
-            <span class="tech-tag">Front-End Design</span>
-            <span class="tech-tag">JavaScript</span>
-            <span class="tech-tag">Responsive Design</span>
-            <span class="tech-tag">Web Architecture</span>
-            <span class="tech-tag">MySQL</span>
+          <div class="proj-row-links">
+            <a href="https://github.com/Nikkobalahadia/" class="proj-row-link" target="_blank" rel="noopener" aria-label="Source">
+              <svg width="16" height="16" viewBox="0 0 24 24" fill="none" aria-hidden="true"><path d="M9 19c-5 1.5-5-2.5-7-3m14 6v-3.87a3.37 3.37 0 0 0-.94-2.61c3.14-.35 6.44-1.54 6.44-7A5.44 5.44 0 0 0 20 4.77 5.07 5.07 0 0 0 19.91 1S18.73.65 16 2.48a13.38 13.38 0 0 0-7 0C6.27.65 5.09 1 5.09 1A5.07 5.07 0 0 0 5 4.77a5.44 5.44 0 0 0-1.5 3.78c0 5.42 3.3 6.61 6.44 7A3.37 3.37 0 0 0 9 18.13V22" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg>
+            </a>
+            <a href="https://nambuildersandsupplycorp.com/" class="proj-row-link" target="_blank" rel="noopener" aria-label="Live">
+              <svg width="16" height="16" viewBox="0 0 24 24" fill="none" aria-hidden="true"><path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6M15 3h6v6M10 14L21 3" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg>
+            </a>
+          </div>
+          <div class="proj-row-arrow" aria-hidden="true">
+            <svg width="20" height="20" viewBox="0 0 24 24" fill="none"><path d="M5 12h14M13 6l6 6-6 6" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg>
           </div>
         </div>
 
         <!-- Project 4 -->
-        <div class="project-card reveal" data-category="desktop">
-          <div class="project-number">04</div>
-          <div class="project-image-wrapper">
-  <img src="fittracker.png" alt="FitTracker" class="project-img">
-  <div class="project-overlay">
-    <div class="project-links">
-              <a href="https://github.com/Nikkobalahadia/" class="proj-link" title="View Source">
-                <svg width="18" height="18" viewBox="0 0 24 24" fill="none"><path d="M9 19c-5 1.5-5-2.5-7-3m14 6v-3.87a3.37 3.37 0 0 0-.94-2.61c3.14-.35 6.44-1.54 6.44-7A5.44 5.44 0 0 0 20 4.77 5.07 5.07 0 0 0 19.91 1S18.73.65 16 2.48a13.38 13.38 0 0 0-7 0C6.27.65 5.09 1 5.09 1A5.07 5.07 0 0 0 5 4.77a5.44 5.44 0 0 0-1.5 3.78c0 5.42 3.3 6.61 6.44 7A3.37 3.37 0 0 0 9 18.13V22" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg>
-              </a>
+        <div class="proj-row gsap-reveal" data-category="desktop">
+          <div class="proj-row-num">04</div>
+          <div class="proj-row-thumb">
+            <img src="fittracker.png" alt="FitTracker" loading="lazy" />
+          </div>
+          <div class="proj-row-info">
+            <h3 class="proj-row-title">FitTracker</h3>
+            <p class="proj-row-desc">A wellness platform with real-time calorie tracking, macro-nutrient analysis, and dynamic data visualization to help users achieve health goals.</p>
+            <div class="project-tech">
+              <span class="tech-tag">PHP</span>
+              <span class="tech-tag">MySQL</span>
+              <span class="tech-tag">Chart.js</span>
+              <span class="tech-tag">REST API</span>
             </div>
           </div>
-          <h3 class="project-title">FitTracker</h3>
-          <p class="project-desc">A comprehensive wellness platform featuring real-time calorie tracking, 
-  macro-nutrient analysis, and dynamic data visualization to help users 
-  monitor and achieve their health goals..</p>
-          <div class="project-tech">
-            <span class="tech-tag">PHP</span>
-            <span class="tech-tag">MySQL</span>
-            <span class="tech-tag">JavaScript</span>
-            <span class="tech-tag">CSS</span>
-            <span class="tech-tag">Chart.js</span>
-          <span class="tech-tag">REST API</span>
+          <div class="proj-row-links">
+            <a href="https://github.com/Nikkobalahadia/" class="proj-row-link" target="_blank" rel="noopener" aria-label="Source">
+              <svg width="16" height="16" viewBox="0 0 24 24" fill="none" aria-hidden="true"><path d="M9 19c-5 1.5-5-2.5-7-3m14 6v-3.87a3.37 3.37 0 0 0-.94-2.61c3.14-.35 6.44-1.54 6.44-7A5.44 5.44 0 0 0 20 4.77 5.07 5.07 0 0 0 19.91 1S18.73.65 16 2.48a13.38 13.38 0 0 0-7 0C6.27.65 5.09 1 5.09 1A5.07 5.07 0 0 0 5 4.77a5.44 5.44 0 0 0-1.5 3.78c0 5.42 3.3 6.61 6.44 7A3.37 3.37 0 0 0 9 18.13V22" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg>
+            </a>
           </div>
+          <div class="proj-row-arrow" aria-hidden="true">
+            <svg width="20" height="20" viewBox="0 0 24 24" fill="none"><path d="M5 12h14M13 6l6 6-6 6" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg>
           </div>
         </div>
-
-
 
         <!-- Project 5 -->
-        <div class="project-card reveal" data-category="system">
-          <div class="project-number">05</div>
-                    <div class="project-image-wrapper">
-  <img src="pos-samabaco.png" alt="Project Name" class="project-img">
-  <div class="project-overlay">
-    <div class="project-links">
-              <a href="https://github.com/Nikkobalahadia/" class="proj-link" title="View Source">
-                <svg width="18" height="18" viewBox="0 0 24 24" fill="none"><path d="M9 19c-5 1.5-5-2.5-7-3m14 6v-3.87a3.37 3.37 0 0 0-.94-2.61c3.14-.35 6.44-1.54 6.44-7A5.44 5.44 0 0 0 20 4.77 5.07 5.07 0 0 0 19.91 1S18.73.65 16 2.48a13.38 13.38 0 0 0-7 0C6.27.65 5.09 1 5.09 1A5.07 5.07 0 0 0 5 4.77a5.44 5.44 0 0 0-1.5 3.78c0 5.42 3.3 6.61 6.44 7A3.37 3.37 0 0 0 9 18.13V22" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg>
-              </a>
+        <div class="proj-row gsap-reveal" data-category="system">
+          <div class="proj-row-num">05</div>
+          <div class="proj-row-thumb">
+            <img src="pos-samabaco.png" alt="POS System SAMABACO" loading="lazy" />
+          </div>
+          <div class="proj-row-info">
+            <h3 class="proj-row-title">POS System — SAMABACO</h3>
+            <p class="proj-row-desc">A complete Point-of-Sale system with inventory management, transaction processing, sales reporting, and receipt generation.</p>
+            <div class="project-tech">
+              <span class="tech-tag">PHP</span>
+              <span class="tech-tag">MySQL</span>
+              <span class="tech-tag">JavaScript</span>
+              <span class="tech-tag">CSS</span>
             </div>
           </div>
-          <h3 class="project-title">POS System — SAMABACO</h3>
-          <p class="project-desc">A complete Point-of-Sale system for a business establishment with inventory management, transaction processing, sales reporting, and receipt generation.</p>
-          <div class="project-tech">
-            <span class="tech-tag">PHP</span>
-            <span class="tech-tag">MySQL</span>
-            <span class="tech-tag">JavaScript</span>
-            <span class="tech-tag">CSS</span>
+          <div class="proj-row-links">
+            <a href="https://github.com/Nikkobalahadia/" class="proj-row-link" target="_blank" rel="noopener" aria-label="Source">
+              <svg width="16" height="16" viewBox="0 0 24 24" fill="none" aria-hidden="true"><path d="M9 19c-5 1.5-5-2.5-7-3m14 6v-3.87a3.37 3.37 0 0 0-.94-2.61c3.14-.35 6.44-1.54 6.44-7A5.44 5.44 0 0 0 20 4.77 5.07 5.07 0 0 0 19.91 1S18.73.65 16 2.48a13.38 13.38 0 0 0-7 0C6.27.65 5.09 1 5.09 1A5.07 5.07 0 0 0 5 4.77a5.44 5.44 0 0 0-1.5 3.78c0 5.42 3.3 6.61 6.44 7A3.37 3.37 0 0 0 9 18.13V22" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg>
+            </a>
+          </div>
+          <div class="proj-row-arrow" aria-hidden="true">
+            <svg width="20" height="20" viewBox="0 0 24 24" fill="none"><path d="M5 12h14M13 6l6 6-6 6" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg>
           </div>
         </div>
-        </div>
-      </div>
+
+      </div><!-- /proj-list -->
     </div>
   </section>
 
-  <!-- ========== TECH STACK CAROUSEL ========== -->
+  <!-- ===== TECH STACK — Interactive Skill Terminal ===== -->
   <section class="stack" id="stack">
-  <div class="container">
-    <div class="section-tag reveal">Expertise</div>
-    <h2 class="section-title reveal">Technical <span class="accent">Proficiency</span></h2>
-    
-    <div class="marquee">
-      <div class="marquee-content">
-        <div class="stack-item"><i class="devicons devicons-html5"></i><span>HTML5</span></div>
-        <div class="stack-item"><i class="devicons devicons-css3"></i><span>CSS3</span></div>
-        <div class="stack-item"><i class="devicons devicons-javascript"></i><span>JavaScript</span></div>
-        <div class="stack-item"><i class="devicons devicons-php"></i><span>PHP</span></div>
-        <div class="stack-item"><i class="devicons devicons-mysql"></i><span>MySQL</span></div>
-        <div class="stack-item"><i class="devicons devicons-bootstrap"></i><span>Bootstrap</span></div>
-        <div class="stack-item"><i class="devicons devicons-git"></i><span>Git</span></div>
-        <div class="stack-item"><i class="devicons devicons-html5"></i><span>HTML5</span></div>
-        <div class="stack-item"><i class="devicons devicons-css3"></i><span>CSS3</span></div>
-        <div class="stack-item"><i class="devicons devicons-javascript"></i><span>JavaScript</span></div>
-        <div class="stack-item"><i class="devicons devicons-php"></i><span>PHP</span></div>
-        <div class="stack-item"><i class="devicons devicons-mysql"></i><span>MySQL</span></div>
-        <div class="stack-item"><i class="devicons devicons-bootstrap"></i><span>Bootstrap</span></div>
-        <div class="stack-item"><i class="devicons devicons-git"></i><span>Git</span></div>
-      </div>
-    </div>
-  </div>
-</section>
-
-
-<section class="process" id="process">
     <div class="container">
-      <div class="section-tag reveal">How I Work</div>
-      <h2 class="section-title reveal">From Concept to <span class="accent">Deployment</span></h2>
+
+      <div class="stack-header">
+        <div>
+          <div class="section-tag gsap-reveal">Expertise</div>
+          <h2 class="section-title gsap-reveal">Technical <span class="accent">Arsenal</span></h2>
+          <p class="stack-sub gsap-reveal">Click any skill to inspect it</p>
+        </div>
+        <!-- Terminal window-chrome dots -->
+        <div class="terminal-chrome gsap-reveal" aria-hidden="true">
+          <span class="chrome-dot chrome-red"></span>
+          <span class="chrome-dot chrome-yellow"></span>
+          <span class="chrome-dot chrome-green"></span>
+          <span class="chrome-label">nikko@dev ~ skills</span>
+        </div>
+      </div>
+
+      <div class="skill-terminal gsap-reveal">
+        <!-- Left panel: skill categories + buttons -->
+        <div class="skill-sidebar">
+          <div class="skill-group" data-group="frontend">
+            <div class="skill-group-label">
+              <svg width="13" height="13" viewBox="0 0 24 24" fill="none" aria-hidden="true"><path d="M4 18l4-7 4 7M12 11l4-7 4 7" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg>
+              Frontend
+            </div>
+            <button class="skill-btn active" data-skill="html">HTML5</button>
+            <button class="skill-btn" data-skill="css">CSS3</button>
+            <button class="skill-btn" data-skill="js">JavaScript</button>
+            <button class="skill-btn" data-skill="bootstrap">Bootstrap</button>
+          </div>
+          <div class="skill-group" data-group="backend">
+            <div class="skill-group-label">
+              <svg width="13" height="13" viewBox="0 0 24 24" fill="none" aria-hidden="true"><rect x="2" y="3" width="20" height="14" rx="2" stroke="currentColor" stroke-width="2"/><path d="M8 21h8M12 17v4" stroke="currentColor" stroke-width="2" stroke-linecap="round"/></svg>
+              Backend
+            </div>
+            <button class="skill-btn" data-skill="php">PHP</button>
+            <button class="skill-btn" data-skill="mysql">MySQL</button>
+          </div>
+          <div class="skill-group" data-group="tools">
+            <div class="skill-group-label">
+              <svg width="13" height="13" viewBox="0 0 24 24" fill="none" aria-hidden="true"><path d="M14.7 6.3a1 1 0 000 1.4l1.6 1.6a1 1 0 001.4 0l3.77-3.77a6 6 0 01-7.94 7.94l-6.91 6.91a2.12 2.12 0 01-3-3l6.91-6.91a6 6 0 017.94-7.94l-3.76 3.76z" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg>
+              Tools
+            </div>
+            <button class="skill-btn" data-skill="git">Git</button>
+            <button class="skill-btn" data-skill="vscode">VS Code</button>
+            <button class="skill-btn" data-skill="figma">Figma</button>
+          </div>
+          <div class="skill-group" data-group="desktop">
+            <div class="skill-group-label">
+              <svg width="13" height="13" viewBox="0 0 24 24" fill="none" aria-hidden="true"><rect x="2" y="3" width="20" height="14" rx="2" stroke="currentColor" stroke-width="2"/><path d="M8 21h8M12 17v4" stroke="currentColor" stroke-width="2" stroke-linecap="round"/></svg>
+              Desktop
+            </div>
+            <button class="skill-btn" data-skill="csharp">C#</button>
+            <button class="skill-btn" data-skill="winforms">WinForms</button>
+          </div>
+        </div>
+
+        <!-- Right panel: output display -->
+        <div class="skill-output" id="skillOutput">
+          <div class="skill-output-inner">
+            <!-- Prompt line -->
+            <div class="skill-prompt">
+              <span class="prompt-user">nikko</span><span class="prompt-at">@</span><span class="prompt-host">dev</span><span class="prompt-sep">:</span><span class="prompt-path">~/skills</span><span class="prompt-arrow">$</span>
+              <span class="prompt-cmd" id="promptCmd">inspect html</span>
+              <span class="prompt-cursor" aria-hidden="true">█</span>
+            </div>
+
+            <!-- Output card -->
+            <div class="skill-card" id="skillCard">
+              <div class="skill-card-top">
+                <div class="skill-card-icon" id="skillIcon">⟨/⟩</div>
+                <div class="skill-card-meta">
+                  <div class="skill-card-name" id="skillName">HTML5</div>
+                  <div class="skill-card-cat"  id="skillCat">Frontend</div>
+                </div>
+                <div class="skill-card-lvl" id="skillLvl">Advanced</div>
+              </div>
+              <div class="skill-bar-wrap">
+                <div class="skill-bar-track">
+                  <div class="skill-bar-fill" id="skillBarFill" style="width: 0%"></div>
+                </div>
+                <span class="skill-bar-pct" id="skillBarPct">0%</span>
+              </div>
+              <p class="skill-card-desc" id="skillDesc">
+                Proficient in semantic HTML5 markup — building accessible, well-structured documents that form the backbone of every project.
+              </p>
+              <div class="skill-card-footer">
+                <span class="skill-used-in">Used in</span>
+                <div class="skill-used-tags" id="skillUsedTags">
+                  <span class="skill-used-tag">NAM Builders</span>
+                  <span class="skill-used-tag">Study Buddy</span>
+                  <span class="skill-used-tag">FitTracker</span>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+
+      </div><!-- /skill-terminal -->
+    </div>
+  </section>
+
+  <!-- ===== PROCESS ===== -->
+  <section class="process" id="process">
+    <div class="container">
+      <div class="section-tag gsap-reveal">How I Work</div>
+      <h2 class="section-title gsap-reveal">From Concept to <span class="accent">Deployment</span></h2>
       <div class="process-grid">
-        <div class="process-step reveal">
+        <div class="process-step gsap-reveal">
           <div class="step-num">01</div>
           <h3>Discovery</h3>
           <p>Analyzing client requirements and business logic for the system.</p>
         </div>
-        <div class="process-step reveal">
+        <div class="process-step gsap-reveal">
           <div class="step-num">02</div>
           <h3>Development</h3>
           <p>Writing clean PHP/MySQL code with focus on security and performance.</p>
         </div>
-        <div class="process-step reveal">
+        <div class="process-step gsap-reveal">
           <div class="step-num">03</div>
           <h3>QA & Launch</h3>
           <p>Rigorous testing followed by seamless deployment to the live server.</p>
@@ -335,18 +469,16 @@
     </div>
   </section>
 
-
-
-  <!-- ========== CONTACT ========== -->
+  <!-- ===== CONTACT ===== -->
   <section class="contact" id="contact">
     <div class="container">
-      <div class="section-tag reveal">Let's Talk</div>
-      <h2 class="section-title center reveal">Get In <span class="accent">Touch</span></h2>
-      <p class="section-sub reveal">Have a project in mind or just want to say hi? I'd love to hear from you.</p>
+      <div class="section-tag gsap-reveal">Let's Talk</div>
+      <h2 class="section-title center gsap-reveal">Get In <span class="accent">Touch</span></h2>
+      <p class="section-sub gsap-reveal">Have a project in mind or just want to say hi? I'd love to hear from you.</p>
 
       <div class="contact-grid">
 
-        <div class="contact-info reveal">
+        <div class="contact-info gsap-reveal">
           <div class="contact-item">
             <div class="contact-icon">📧</div>
             <div>
@@ -362,29 +494,29 @@
             </div>
           </div>
           <div class="contact-socials">
-            <a href="https://github.com/Nikkobalahadia" class="social-btn" aria-label="GitHub">
-              <svg width="20" height="20" viewBox="0 0 24 24" fill="none"><path d="M9 19c-5 1.5-5-2.5-7-3m14 6v-3.87a3.37 3.37 0 0 0-.94-2.61c3.14-.35 6.44-1.54 6.44-7A5.44 5.44 0 0 0 20 4.77 5.07 5.07 0 0 0 19.91 1S18.73.65 16 2.48a13.38 13.38 0 0 0-7 0C6.27.65 5.09 1 5.09 1A5.07 5.07 0 0 0 5 4.77a5.44 5.44 0 0 0-1.5 3.78c0 5.42 3.3 6.61 6.44 7A3.37 3.37 0 0 0 9 18.13V22" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg>
+            <a href="https://github.com/Nikkobalahadia" class="social-btn" target="_blank" rel="noopener" aria-label="GitHub">
+              <svg width="20" height="20" viewBox="0 0 24 24" fill="none" aria-hidden="true"><path d="M9 19c-5 1.5-5-2.5-7-3m14 6v-3.87a3.37 3.37 0 0 0-.94-2.61c3.14-.35 6.44-1.54 6.44-7A5.44 5.44 0 0 0 20 4.77 5.07 5.07 0 0 0 19.91 1S18.73.65 16 2.48a13.38 13.38 0 0 0-7 0C6.27.65 5.09 1 5.09 1A5.07 5.07 0 0 0 5 4.77a5.44 5.44 0 0 0-1.5 3.78c0 5.42 3.3 6.61 6.44 7A3.37 3.37 0 0 0 9 18.13V22" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg>
               GitHub
             </a>
-            <a href="https://www.facebook.com/share/1CaQRXiyq5/" class="social-btn" aria-label="Facebook">
-              <svg width="20" height="20" viewBox="0 0 24 24" fill="none"><path d="M18 2h-3a5 5 0 0 0-5 5v3H7v4h3v8h4v-8h3l1-4h-4V7a1 1 0 0 1 1-1h3z" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg>
+            <a href="https://www.facebook.com/share/1CaQRXiyq5/" class="social-btn" target="_blank" rel="noopener" aria-label="Facebook">
+              <svg width="20" height="20" viewBox="0 0 24 24" fill="none" aria-hidden="true"><path d="M18 2h-3a5 5 0 0 0-5 5v3H7v4h3v8h4v-8h3l1-4h-4V7a1 1 0 0 1 1-1h3z" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg>
               Facebook
             </a>
-            <a href="https://www.linkedin.com/in/nikkobalahadia/" class="social-btn" aria-label="LinkedIn">
-              <svg width="20" height="20" viewBox="0 0 24 24" fill="none"><path d="M16 8a6 6 0 0 1 6 6v7h-4v-7a2 2 0 0 0-2-2 2 2 0 0 0-2 2v7h-4v-7a6 6 0 0 1 6-6zM2 9h4v12H2z" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/><circle cx="4" cy="4" r="2" stroke="currentColor" stroke-width="1.5"/></svg>
+            <a href="https://www.linkedin.com/in/nikkobalahadia/" class="social-btn" target="_blank" rel="noopener" aria-label="LinkedIn">
+              <svg width="20" height="20" viewBox="0 0 24 24" fill="none" aria-hidden="true"><path d="M16 8a6 6 0 0 1 6 6v7h-4v-7a2 2 0 0 0-2-2 2 2 0 0 0-2 2v7h-4v-7a6 6 0 0 1 6-6zM2 9h4v12H2z" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/><circle cx="4" cy="4" r="2" stroke="currentColor" stroke-width="1.5"/></svg>
               LinkedIn
             </a>
           </div>
         </div>
 
-        <form class="contact-form reveal" id="contactForm" novalidate>
+        <form class="contact-form gsap-reveal" id="contactForm">
           <div class="form-group">
             <label for="name">Name</label>
             <input type="text" id="name" name="name" placeholder="Your name" required />
           </div>
           <div class="form-group">
             <label for="email">Email</label>
-            <input type="email" id="email" name="email" placeholder="your.email" required />
+            <input type="email" id="email" name="email" placeholder="your.email@example.com" required />
           </div>
           <div class="form-group">
             <label for="message">Message</label>
@@ -392,9 +524,11 @@
           </div>
           <button type="submit" class="btn btn-primary full">
             <span>Send Message</span>
-            <svg width="16" height="16" viewBox="0 0 16 16" fill="none"><path d="M2 8h12M10 4l4 4-4 4" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg>
+            <svg width="16" height="16" viewBox="0 0 16 16" fill="none" aria-hidden="true">
+              <path d="M2 8h12M10 4l4 4-4 4" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+            </svg>
           </button>
-          <div class="form-success" id="formSuccess">
+          <div class="form-success" id="formSuccess" role="status" aria-live="polite">
             ✅ Message sent! I'll get back to you soon.
           </div>
         </form>
@@ -403,19 +537,21 @@
     </div>
   </section>
 
-  <!-- ========== FOOTER ========== -->
+  <!-- ===== FOOTER ===== -->
   <footer class="footer">
     <div class="footer-inner">
-      <div class="footer-logo"> <span class="logo-dot"> </span></div>
+      <div class="footer-logo">
+        <span class="logo-bracket">[</span>NB<span class="logo-bracket">]</span>
+      </div>
       <p class="footer-copy">© 2026 Nikko Balahadia. Built with 💙 and lots of coffee.</p>
-      <a href="#home" class="back-to-top" id="backToTop" aria-label="Back to top">
-        <svg width="18" height="18" viewBox="0 0 18 18" fill="none"><path d="M9 14V4M5 8l4-4 4 4" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg>
+      <a href="#home" class="back-to-top" aria-label="Back to top">
+        <svg width="18" height="18" viewBox="0 0 18 18" fill="none" aria-hidden="true">
+          <path d="M9 14V4M5 8l4-4 4 4" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+        </svg>
       </a>
     </div>
   </footer>
 
-  <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/gsap.min.js"></script>
-<script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/ScrollTrigger.min.js"></script>
-<script src="script.js"></script>
+  <script src="script.js" defer></script>
 </body>
 </html>
