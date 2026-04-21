@@ -102,18 +102,30 @@ function initNavbarAnimation() {
    ============================================================ */
 function initCountUp() {
   qsa('.stat-num').forEach(el => {
-    const rawText = el.textContent.trim();
-    const num     = parseInt(rawText);
-    const suffix  = rawText.replace(/[0-9]/g, '');
+    const fullText = el.innerText; // e.g., "4+"
+    const numMatch = fullText.match(/\d+/); // Finds the digits
+    const suffix = fullText.replace(/\d+/, ''); // Keeps the "+" or other symbols
+    
+    if (!numMatch) return; // Skips "∞" or non-numeric stats
 
-    if (isNaN(num)) return;
+    const targetVal = parseInt(numMatch[0]);
 
-    gsap.from({ val: 0 }, {
-      scrollTrigger: { trigger: el, start: 'top 85%', once: true },
-      val:      num,
-      duration: 1.4,
-      ease:     'power2.out',
-      onUpdate() { el.textContent = Math.round(this.targets()[0].val) + suffix; },
+    // 1. Set the initial display to 0 + suffix immediately
+    el.innerText = `0${suffix}`;
+
+    // 2. Animate the number
+    gsap.to(el, {
+      innerText: targetVal,
+      duration: 1.5,
+      snap: { innerText: 1 }, // Ensures it increments by whole numbers
+      scrollTrigger: {
+        trigger: el,
+        start: 'top 90%', // Starts when 90% from the top of the viewport
+      },
+      onUpdate: function() {
+        // 3. Append the suffix back during every frame of the animation
+        el.innerText = Math.floor(el.innerText) + suffix;
+      }
     });
   });
 }
