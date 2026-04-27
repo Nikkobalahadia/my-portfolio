@@ -1137,7 +1137,7 @@ section { padding: var(--section-py) 0; position: relative; }
 
 /* Skill progress bar */
 .skill-bar-wrap {
-  display: flex;
+  display: none;
   align-items: center;
   gap: 12px;
   margin-bottom: 16px;
