@@ -813,7 +813,7 @@ section { padding: var(--section-py) 0; position: relative; }
   margin-top: 10px;
   background: var(--surface);
   transition: background var(--t-mid), border-color var(--t-mid), transform var(--t-mid);
-  cursor: default;
+  cursor: pointer;
   position: relative;
   overflow: hidden;
 }
@@ -1490,9 +1490,9 @@ a.contact-value:hover { color: var(--accent); }
   .proj-feat-body  { padding: 20px; }
   .proj-feat-details { display: none; }
 
-  /* Row: only num + title + arrow */
-  .proj-row { grid-template-columns: 28px 1fr 20px; gap: 10px; }
-  .proj-row-thumb { display: none; }
+/* Row: num + thumb + title + arrow */
+  .proj-row { grid-template-columns: 28px 64px 1fr 20px; gap: 10px; }
+  .proj-row-thumb { display: block; width: 64px; }
 
   .skill-output { padding: 20px; }
 }

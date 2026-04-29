@@ -513,13 +513,13 @@ function initCountUp() {
   }
 
   /* Delegate arrow clicks (works even after DOM rebuilds) */
+  /* Delegate clicks on the entire row (or arrow button) to promote */
   const projList = qs('#projList');
   if (projList) {
     projList.addEventListener('click', e => {
-      const btn = e.target.closest('.proj-promote-btn');
-      if (!btn) return;
-      e.stopPropagation();
-      const row = btn.closest('.proj-row');
+      /* Ignore clicks on external links so they still navigate */
+      if (e.target.closest('a')) return;
+      const row = e.target.closest('.proj-row');
       if (row) promoteProjToFeatured(row);
     });
   }
