@@ -725,8 +725,8 @@ section { padding: var(--section-py) 0; position: relative; }
   padding: 8px 14px;
   border-radius: var(--r-sm);
   background: rgba(8,8,16,0.8);
-  color: var(--text);
-  border: 1px solid var(--border-2);
+  color: #ffffff;
+  border: 1px solid rgba(255,255,255,0.25);
   backdrop-filter: blur(8px);
   transition: all var(--t-fast);
 }
